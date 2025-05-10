@@ -135,7 +135,7 @@ class Fighter:
     # For now, taunting will not affect the opponent -- in a more detailed version of the game, it could affect the opponent's .morale or .courage rating, or inflict "Psychic" damage calculated based on .courage, .fortitude, or some such attribute
   def taunt(self, opponent):
     if self.taunt_message: # Only works if the character actually has a taunt message
-      print(f"{self.name} taunts {opponent.name}: '{self.taunt_message}'")
+      print(f"\n{self.name} taunts {opponent.name}: '{self.taunt_message}'")
 
 
 # PRE-MADE FIGHTERS:
@@ -361,6 +361,10 @@ if p2_welcome_choice == '2':
 # THE BATTLE FUNCTION:
 def battle(player1, player2):
 
+  input("""
+        Fighters have been chosen...
+        PRESS ENTER TO BEGIN THE DUEL!""")
+
   # Roll initiative to determine who gets the first move:
   player1_initiative = random.randint(1, 20) * player1.speed
   player2_initiative = random.randint(1, 20) * player2.speed
@@ -473,22 +477,31 @@ def battle(player1, player2):
   
  # Battle Loop:
  # Battle continues as long as both players are alive
-  while player1.hp > 0 and player2.hp > 0: 
+  while player1.hp > 0 and player2.hp > 0:
+
     # Active player makes their move
     choose_action(active_player, passive_player)
-    
-    # User inputs to trigger the next turn:
-    input("\nPress Enter to see what happens next!")
 
+    if player1.hp <= 0:
+      print(f"""
+      {player1.name} has been vanquished! {player2.name} wins! 
+            
+      GAME OVER""")
+      break
+
+    if player2.hp <= 0:
+      print(f"""
+      {player2.name} has been vanquished! {player1.name} wins! 
+            
+      GAME OVER""")
+      break
+
+    # User inputs to trigger the next turn:
+    input("\nPress Enter to see what happens next!") 
+    
     # Switch players -- it is now the other player's turn:
     active_player, passive_player = passive_player, active_player
-  
-  if player1.hp <= 0:
-    print(f"\n{player1.name} has been vanquished! {player2.name} wins! \nGAME OVER")
-  
-  if player2.hp <= 0:
-    print(f"\n{player2.name} has been vanquished! {player1.name} wins! \nGAME OVER")
-
+    
 # INITIATE THE BATTLE!
 battle(player1, player2)
 
