@@ -439,7 +439,7 @@ def battle(player1, player2):
         # 1. active_player's HP is double opponent's HP, or
         # 2. strength is double opponent's strength, or
         # 3. Legendary fighter against non-legendary
-    elif (active_player.hp >= passive_player.hp * 2 
+    if (active_player.hp >= passive_player.hp * 2 
           or active_player.strength > passive_player.strength * 2 
           or (active_player.item.is_legendary == True 
               and passive_player.item.is_legendary == False)):
