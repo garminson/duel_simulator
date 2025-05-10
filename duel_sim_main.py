@@ -406,6 +406,7 @@ def battle(player1, player2):
       # then active_player will choose .block()
       if block_chance > passive_player.item.power - active_player.item.power:
         choose_block = True
+        choice = "choose_block"
     
     else: # If neither condition is met, the active player has no chance of trying to block
       choose_block = False
@@ -426,9 +427,10 @@ def battle(player1, player2):
       if fear > strength_diff / 2:
         # ...then active_player will choose to .flee()
         choose_flee = True 
+        choice = "choose_flee"
 
-    # If BLOCK and FLEE are both chosen, choose one randomly:
-        if choose_block and choose_flee: # < -- this is nested under the Flee check because it will only check for both being True if choose_flee is True
+    # If BLOCK and FLEE are both True, choose one randomly:
+        if choose_block and choose_flee:
           choice = random.choice(["choose_block", "choose_flee"])
 
     # TAUNT option:
@@ -467,9 +469,14 @@ def battle(player1, player2):
     
   
  # Battle Loop:
-  while player1.hp > 0 and player2.hp > 0: # Battle continues as long as both players are alive
+ # Battle continues as long as both players are alive
+  while player1.hp > 0 and player2.hp > 0: 
     # Active player makes their move
     choose_action(active_player, passive_player)
+    
+    # User inputs to trigger the next turn:
+    input("\nPress Enter to see what happens next!")
+
     # Switch players -- it is now the other player's turn:
     active_player, passive_player = passive_player, active_player
   
@@ -479,6 +486,7 @@ def battle(player1, player2):
   if player2.hp <= 0:
     print(f"\n{player2.name} has been vanquished! {player1.name} wins! \nGAME OVER")
 
+# INITIATE THE BATTLE!
 battle(player1, player2)
 
 ## END OF PROGRAM (for now) ##
