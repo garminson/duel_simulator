@@ -380,6 +380,24 @@ def battle(player1, player2):
   def choose_action(active_player, passive_player):
     choice = None
 
+    # FLEE option:
+    # 2 conditions may trigger .flee() chance: 
+      # 1. HP is less than 30% opponent's HP, or 
+      # 2. non-legendary player pitted against legendary player
+    if ((active_player.hp <= passive_player.hp * 0.3) or 
+        (active_player.item.is_legendary == False 
+         and passive_player.item.is_legendary == True)):
+      # Assess difference in strength between the 2 players
+      strength_diff = abs(active_player.strength - passive_player.strength) 
+      # Assess fear: a random number in the range of strength_diff 
+      fear = random.randint(1, strength_diff)
+      # If active_player's fear exceeds half of strength_diff 
+      # (this should happen in 50% of cases where the FLEE check is triggered)...
+      if fear > strength_diff / 2:
+        # ...then active_player will choose to .flee()
+        choose_flee = True 
+        choice = "choose_flee"
+    
     # BLOCK option:
     # 2 conditions may trigger .block() chance:
       # 1. active_player HP is less than 75% opponent HP,
@@ -408,30 +426,13 @@ def battle(player1, player2):
         choose_block = True
         choice = "choose_block"
     
-    else: # If neither condition is met, the active player has no chance of trying to block
+    else: 
+      # If neither condition is met, active_player will not block
       choose_block = False
     
-    # FLEE option:
-    # 2 conditions may trigger .flee() chance: 
-    # 1. opponent HP is double player HP, or 
-    # 2. non-legendary player pitted against legendary player
-    if ((passive_player.hp >= active_player.hp * 2) or 
-        (active_player.item.is_legendary == False 
-         and passive_player.item.is_legendary == True)): 
-      # Assess difference in strength between the 2 players
-      strength_diff = abs(active_player.strength - passive_player.strength) 
-      # Assess fear: a random number in the range of strength_diff 
-      fear = random.randint(1, strength_diff)
-      # If active_player's fear exceeds half of strength_diff 
-      # (this should happen in 50% of cases where the FLEE check is triggered)...
-      if fear > strength_diff / 2:
-        # ...then active_player will choose to .flee()
-        choose_flee = True 
-        choice = "choose_flee"
-
     # If BLOCK and FLEE are both True, choose one randomly:
-        if choose_block and choose_flee:
-          choice = random.choice(["choose_block", "choose_flee"])
+        # if choose_block and choose_flee:
+        #   choice = random.choice(["choose_block", "choose_flee"])
 
     # TAUNT option:
       # 3 conditions may trigger .taunt() chance:
