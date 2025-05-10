@@ -409,13 +409,17 @@ def battle(player1, player2):
       choose_block = False
     
     # FLEE method:
-    # 2 conditions may trigger .flee() chance: opponent HP is double player HP, or non-legendary player pitted against legendary player
-    if (passive_player.hp >= active_player.hp * 2) or (active_player.item.is_legendary == False and passive_player.item.is_legendary == True): 
+    # 2 conditions may trigger .flee() chance: opponent HP is double player HP, or 
+    # non-legendary player pitted against legendary player
+    if ((passive_player.hp >= active_player.hp * 2) or 
+        (active_player.item.is_legendary == False 
+         and passive_player.item.is_legendary == True)): 
       # Assess difference in strength between the 2 players
       strength_diff = abs(active_player.strength - passive_player.strength) 
       # Assess fear: a random number in the range of strength_diff 
       fear = random.randint(1, strength_diff)
-      # If active_player's fear exceeds half of strength_diff (this should happen in 50% of cases where the FLEE check is triggered)...
+      # If active_player's fear exceeds half of strength_diff 
+      # (this should happen in 50% of cases where the FLEE check is triggered)...
       if fear > strength_diff / 2:
         # ...then active_player will choose to .flee()
         choose_flee = True 
