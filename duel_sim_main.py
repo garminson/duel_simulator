@@ -408,13 +408,17 @@ def battle(player1, player2):
     else: # If neither condition is met, the active player has no chance of trying to block
       choose_block = False
     
-    # FLEE method -- How it works:
-      # a Fighter has a chance of trying to flee if the opponent's HP is equal to or greater than 2x their own HP in the course of the fight (the chance of fleeing will need to be determined in the Battle System function)
-      # a non-legendary fighter (one not wielding a legendary item) may also immediately flee if pitted against a legendary fighter (one who IS wielding a legendary weapon)-- the likelihood of this happening will be calculated using a random number in the range of the difference between the 2 characters' strength scores)
-    if passive_player.hp >= active_player.hp * 2:
-      flee_chance = random.randint(1, max(active_player.strength, passive_player.strength) - min(active_player.strength, passive_player.strength))
-      if flee_chance > (max(active_player.strength, passive_player.strength) - min(active_player.strength, passive_player.strength) / 2):
-        choose_flee = True
+    # FLEE method:
+    # 2 conditions may trigger .flee() chance: opponent HP is double player HP, or non-legendary player pitted against legendary player
+    if (passive_player.hp >= active_player.hp * 2) or (active_player.item.is_legendary == False and passive_player.item.is_legendary == True): 
+      # Assess difference in strength between the 2 players
+      strength_diff = abs(active_player.strength - passive_player.strength) 
+      # Assess fear: a random number in the range of strength_diff 
+      fear = random.randint(1, strength_diff)
+      # If active_player's fear exceeds half of strength_diff (this should happen in 50% of cases where the FLEE check is triggered)...
+      if fear > strength_diff / 2:
+        # ...then active_player will choose to .flee()
+        choose_flee = True 
 
     # Check if BLOCK and FLEE are both True, choose one randomly if they are:
         if choose_block and choose_flee: # < -- this is nested under the Flee check because it will only check for both being True if choose_flee is True
