@@ -389,7 +389,6 @@ def battle(player1, player2):
       # ELIF item.power <= half of opponent.item.power, then the likelihood of the character trying to block will be determined using a similar method to the HP method: a random number in the range between 1 and opponent.item.power minus self.item.power -- if this random number is greater than half of the total difference, then the character will try to block
       # If BOTH of these conditions are true (hp AND item power), then the likelihood calculation method will default to the HP method (in which case there is no need to check if both conditions are true, since the conditional will exit after confirming that the HP method is appropriate)
     
-    # Conditions for Block and Flee overlap -- how to choose between the two? Calculate "action_chance" for each action, choose the higher action_chance number -- if the two action_chance numbers are equal, choose at random between Block and Flee
     # HP METHOD FOR BLOCK CHANCE:
     if active_player.hp <= passive_player.hp * 0.75:
       block_chance = random.randint(1, int(passive_player.hp - active_player.hp)) # <-- A "fear" variable (instead of action_chance) could interact with a Fighter .courage attribute and make for more dynamic simulations (save this for another time)
@@ -445,9 +444,9 @@ def battle(player1, player2):
     # Executing the player's chosen action:
     if choice == "choose_block":
       active_player.block()
-    if choice == "choose_flee":
+    elif choice == "choose_flee":
       active_player.flee(passive_player)
-    if choice == "choose_taunt":
+    elif choice == "choose_taunt":
       active_player.taunt(passive_player)
     else:
       active_player.attack(passive_player)
