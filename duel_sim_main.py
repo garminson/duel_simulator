@@ -404,6 +404,10 @@ def battle(player1, player2):
         # ...then active_player will choose to .flee()
         choose_flee = True 
         choice = "choose_flee"
+      else:
+        choose_flee = False
+    else:
+      choose_flee = False
     
     # BLOCK option:
     # 2 conditions may trigger .block() chance:
@@ -420,7 +424,9 @@ def battle(player1, player2):
       # then active_player will choose .block()
       if block_chance > (passive_player.hp - active_player.hp) / 2:
         choose_block = True
-        choice = "choose_block"
+        # choice = "choose_block"
+      else:
+        choose_block = False
 
     # 2. ITEM POWER METHOD FOR BLOCK CHANCE:
     # Or, if active_player's item.power is less than half of opponent's,
@@ -432,7 +438,9 @@ def battle(player1, player2):
       # then active_player will choose .block()
       if block_chance > passive_player.item.power - active_player.item.power:
         choose_block = True
-        choice = "choose_block"
+        # choice = "choose_block"
+      else:
+        choose_block = False
     
     else: 
       # If neither condition is met, active_player will not block
@@ -463,21 +471,21 @@ def battle(player1, player2):
           choose_taunt = True
         else:
           choose_taunt = False
-        if choose_taunt == True:
-          choice = "choose_taunt"
+    else:
+      choose_taunt = False
+        # if choose_taunt == True:
+        #   choice = "choose_taunt"
     
     # Executing the player's chosen action:
-    if choice == "choose_block":
+    if choose_block:
       active_player.block()
-    elif choice == "choose_flee":
+    elif choose_flee:
       active_player.flee(passive_player)
-    elif choice == "choose_taunt":
+    elif choose_taunt:
       active_player.taunt(passive_player)
     else:
       active_player.attack(passive_player)
     
-    
-  
  # Battle Loop:
  # Battle continues as long as both players are alive
   while player1.hp > 0 and player2.hp > 0:
@@ -507,5 +515,11 @@ def battle(player1, player2):
     
 # INITIATE THE BATTLE!
 battle(player1, player2)
+
+# Function to restart game:
+#def restart_game():
+#input("\nWould you like to play again? Y / N ")
+
+# restart_game
 
 ## END OF PROGRAM (for now) ##
