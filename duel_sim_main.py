@@ -413,6 +413,7 @@ def battle(player1, player2):
       # then active_player will choose .block()
       if block_chance > (passive_player.hp - active_player.hp) / 2:
         choose_block = True
+        choice = "choose_block"
 
     # 2. ITEM POWER METHOD FOR BLOCK CHANCE:
     # Or, if active_player's item.power is less than half of opponent's,
@@ -445,17 +446,18 @@ def battle(player1, player2):
               and passive_player.item.is_legendary == False)):
       # Randomizing taunt_chance using strength_diff
       # ensures that player is not stuck taunting forever!
-      strength_diff = abs(active_player.strength - passive_player.strength)
-      taunt_chance = random.randint(1, strength_diff)
-      # Player chooses to taunt if random taunt_chance
-      # exceeds 75% of strength_diff
-      # (i.e. in 25% of cases where taunt_chance is triggered)
-      if taunt_chance > 0.75 * strength_diff:
-        choose_taunt = True
-      else:
-        choose_taunt = False
-      if choose_taunt == True:
-        choice = "choose_taunt"
+      if active_player.strength > passive_player.strength:
+        strength_diff = abs(active_player.strength - passive_player.strength)
+        taunt_chance = random.randint(1, strength_diff)
+        # Player chooses to taunt if random taunt_chance
+        # exceeds 75% of strength_diff
+        # (i.e. in 25% of cases where taunt_chance is triggered)
+        if taunt_chance > 0.75 * strength_diff:
+          choose_taunt = True
+        else:
+          choose_taunt = False
+        if choose_taunt == True:
+          choice = "choose_taunt"
     
     # Executing the player's chosen action:
     if choice == "choose_block":
