@@ -115,7 +115,7 @@ class Fighter:
     self.is_blocking = True
     block_capacity = int(self.item.power / 2)
     self.block_points = random.randint(1, block_capacity) * self.strength
-
+    print(f"{self.name} gets into a defensive stance...")
 
   # Flee method -- How it works:
    
@@ -361,9 +361,12 @@ if p2_welcome_choice == '2':
 # THE BATTLE FUNCTION:
 def battle(player1, player2):
 
-  input("""
+  input(f"""
         Fighters have been chosen...
-        PRESS ENTER TO BEGIN THE DUEL!""")
+        {player1.name} versus {player2.name}...
+        Who will be victorious?
+
+        PRESS ENTER TO BEGIN THE DUEL.""")
 
   # Roll initiative to determine who gets the first move:
   player1_initiative = random.randint(1, 20) * player1.speed
