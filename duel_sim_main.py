@@ -67,7 +67,7 @@ class Fighter:
     {self.name}'s {self.item.name} is a LEGENDARY weapon with a Power rating of {self.item.power}."""
     return description
   
-  # FIGHTER METHODS - attack, block, flee, taunt
+  # FIGHTER ACTIONS - attack, block, flee, taunt
   # Attack method:
   def attack(self, opponent):
     # Calculate and display damage from the attack:
@@ -110,11 +110,11 @@ class Fighter:
 
   # Block method -- How this will work:
     
-    # If the character chooses to block, the block score (.block_points) will be calculated using a random number in the range of half their item's .power score, and this random number will be multiplied by their .strength score, and their damage will be reduced by the resulting number
+    # If the character chooses to block, the block score (.block_points) will be calculated using using a random number in their block_capacity (half their item's .power score), and this random number will be multiplied by their .strength score, and their damage will be reduced by the resulting number
   def block(self):
     self.is_blocking = True
-    block_range = int(self.item.power / 2)
-    self.block_points = random.randint(1, block_range) * self.strength
+    block_capacity = int(self.item.power / 2)
+    self.block_points = random.randint(1, block_capacity) * self.strength
 
 
   # Flee method -- How it works:
