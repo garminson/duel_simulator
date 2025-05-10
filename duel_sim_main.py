@@ -380,7 +380,7 @@ def battle(player1, player2):
   def choose_action(active_player, passive_player):
     choice = None
 
-    # BLOCK method:
+    # BLOCK option:
     # 2 conditions may trigger .block() chance:
       # 1. active_player HP is less than 75% opponent HP,
       # 2. or opponent's item.power is double active_player's
@@ -410,9 +410,10 @@ def battle(player1, player2):
     else: # If neither condition is met, the active player has no chance of trying to block
       choose_block = False
     
-    # FLEE method:
-    # 2 conditions may trigger .flee() chance: opponent HP is double player HP, or 
-    # non-legendary player pitted against legendary player
+    # FLEE option:
+    # 2 conditions may trigger .flee() chance: 
+    # 1. opponent HP is double player HP, or 
+    # 2. non-legendary player pitted against legendary player
     if ((passive_player.hp >= active_player.hp * 2) or 
         (active_player.item.is_legendary == False 
          and passive_player.item.is_legendary == True)): 
@@ -426,18 +427,27 @@ def battle(player1, player2):
         # ...then active_player will choose to .flee()
         choose_flee = True 
 
-    # Check if BLOCK and FLEE are both True, choose one randomly if they are:
+    # If BLOCK and FLEE are both chosen, choose one randomly:
         if choose_block and choose_flee: # < -- this is nested under the Flee check because it will only check for both being True if choose_flee is True
           choice = random.choice(["choose_block", "choose_flee"])
-        else:
-          choice = "choose_block" if choose_block else "choose_flee"
 
-    # TAUNT method -- How it works (only checks for Taunt conditions if Block and Flee are not chosen):
-      # a Fighter has a chance of taunting their opponent if their HP is greater than or equal to twice the opponent's HP, OR if their strength is greater than 2x the opponent's strength, OR if they are Legendary and their opponent is not (the chance of taunting will need to be determined in the Battle System function) 
-    elif active_player.hp >= passive_player.hp * 2 or active_player.strength > passive_player.strength * 2 or (active_player.item.is_legendary == True and passive_player.item.is_legendary == False):
-      # Make it so that the more powerful player is not stuck taunting forever!
-      taunt_chance = random.randint(1, (max(active_player.strength, passive_player.strength) - min(active_player.strength, passive_player.strength)))
-      if taunt_chance > 0.75 * (max(active_player.strength, passive_player.strength) - min(active_player.strength, passive_player.strength)): # <-- If the random taunt chance is greater than 75% of the difference in strength, then the player will choose to taunt -- to make gameplay more dynamic, could add a .cockiness attribute that effects this multiplier, but for now keep it simple at 0.75 for all players
+    # TAUNT option:
+      # 3 conditions may trigger .taunt() chance:
+        # 1. active_player's HP is double opponent's HP, or
+        # 2. strength is double opponent's strength, or
+        # 3. Legendary fighter against non-legendary
+    elif (active_player.hp >= passive_player.hp * 2 
+          or active_player.strength > passive_player.strength * 2 
+          or (active_player.item.is_legendary == True 
+              and passive_player.item.is_legendary == False)):
+      # Randomizing taunt_chance using strength_diff
+      # ensures that player is not stuck taunting forever!
+      strength_diff = abs(active_player.strength - passive_player.strength)
+      taunt_chance = random.randint(1, strength_diff)
+      # Player chooses to taunt if random taunt_chance
+      # exceeds 75% of strength_diff
+      # (i.e. in 25% of cases where taunt_chance is triggered)
+      if taunt_chance > 0.75 * strength_diff:
         choose_taunt = True
       else:
         choose_taunt = False
