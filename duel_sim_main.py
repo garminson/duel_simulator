@@ -379,28 +379,31 @@ def battle(player1, player2):
   # Nested function to determine active_player's chosen action for the current turn:
   def choose_action(active_player, passive_player):
     choice = None
-    # Default choice will be attack: if none of the conditions for the other action options are met, the player will choose to attack
 
-    # Calculate likelihood of each of the Fighter's available choices: attack, block, flee, and taunt (check for conditions that could initiate block, flee, or taunt, and if none of these are met, default the Fighter's choice, using else, to be attack)
-
-    # BLOCK method -- How it works:   
-    # a Fighter has a chance of trying to block if their HP is less than 75% of the opponent's HP, OR if their Item's power score is equal to or less than half of the opponent item's power score (the chance of blocking will need to be determined in the Battle System function) 
-      # IF HP <= to 0.75 times opponent's HP, then the likelihood of the character trying to block will be determined by a random number in the range between 1 and the difference of opponent.hp minus self.hp -- e.g. if the difference were 20 HP pts, the number would be a random number between 1 and 20 -- if this random number is greater than half of the total difference -- e.g. in the example, if the random number were greater than 10 -- then the character will try to block
-      # ELIF item.power <= half of opponent.item.power, then the likelihood of the character trying to block will be determined using a similar method to the HP method: a random number in the range between 1 and opponent.item.power minus self.item.power -- if this random number is greater than half of the total difference, then the character will try to block
-      # If BOTH of these conditions are true (hp AND item power), then the likelihood calculation method will default to the HP method (in which case there is no need to check if both conditions are true, since the conditional will exit after confirming that the HP method is appropriate)
+    # BLOCK method:
+    # 2 conditions may trigger .block() chance:
+      # 1. active_player HP is less than 75% opponent HP,
+      # 2. or opponent's item.power is double active_player's
     
-    # HP METHOD FOR BLOCK CHANCE:
+    # 1. HP METHOD FOR BLOCK CHANCE:
+    # If active_player's HP is less than 75% of opponent's HP,
     if active_player.hp <= passive_player.hp * 0.75:
-      block_chance = random.randint(1, int(passive_player.hp - active_player.hp)) # <-- A "fear" variable (instead of action_chance) could interact with a Fighter .courage attribute and make for more dynamic simulations (save this for another time)
+      # then active_player's chance of trying to block is determined
+      # by a random number in the range of their HP difference
+      block_chance = random.randint(1, int(passive_player.hp - active_player.hp))
+      # If block_chance is greater than half of HP diff,
+      # then active_player will choose .block()
       if block_chance > (passive_player.hp - active_player.hp) / 2:
         choose_block = True
 
-      # if fear > (passive_player.hp - active_player.hp) / 2:
-        #active_player.block(passive_player) # <-- commenting this action out for now -- maybe we should save the action command for the end of the choose_action function -- for now, just save the action_chance number of each calculation
-
-    # ITEM POWER METHOD FOR BLOCK CHANCE:
+    # 2. ITEM POWER METHOD FOR BLOCK CHANCE:
+    # Or, if active_player's item.power is less than half of opponent's,
     elif active_player.item.power <= passive_player.item.power / 2:
+      # then active_player's chance of trying to block is determined
+      # by a random number in the range of item.power diff
       block_chance = random.randint(1, passive_player.item.power - active_player.item.power)
+      # If block_chance is greater than half of item.power diff,
+      # then active_player will choose .block()
       if block_chance > passive_player.item.power - active_player.item.power:
         choose_block = True
     
