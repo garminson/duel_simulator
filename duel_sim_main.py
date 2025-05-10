@@ -206,7 +206,9 @@ def create_fighter():
   Or, enter 'None' if you want {custom_name} to fight NAKED. """).title()
   if custom_armor != "Leather" and custom_armor != "Metal" and custom_armor != "Fabric" and custom_armor != "None":
     custom_armor = input("\nEnter one of the following Armor options: Leather, Metal, Fabric, or None. ").title()
-  print("\n{custom_name} will {custom_armor}.".format(custom_name = custom_name, custom_armor = "wear" + custom_armor + "armor" if not "None" else "fight NAKED"))
+  print("\n{custom_name} will {custom_armor}.".format(
+    custom_name = custom_name, 
+    custom_armor = "wear " + custom_armor if custom_armor != "None" else "fight naked.."))
 
   custom_taunt = input(f"\nTAUNT: If {custom_name} gains the upper hand in a duel, they may taunt their opponent. Enter a Taunt message for {custom_name}: ")
 
