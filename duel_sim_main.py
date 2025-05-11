@@ -287,9 +287,25 @@ def select_fighter():
     
 # CREATE-A-FIGHTER FUNCTION:
 def create_fighter():
+  dubba_counter = 0
   custom_name = input("\nNAME: Enter a name for your Fighter. ")
+  while custom_name == '':
+    dubba_counter += 1
+    custom_name = input("\nPlease enter a name for your Fighter before continuing. ")
+    if dubba_counter > 2:
+      print("""
+      You friggin' dubbah, don't you know how to follow instructions?
+      Now your Fighter's name is going to be DUBBAH. Serves you right! HEh-Heh-hEh.""")
+      custom_name = "Dubbah"
 
-  custom_hp = int(input(f"\nHP: Next, enter {custom_name}'s Hit Points. This is how much damage {custom_name} can take (to keep the fight interesting, it is recommended that you keep HP below 1000). "))
+  custom_hp = input(f"\nHP: Next, enter {custom_name}'s Hit Points. This is how much damage {custom_name} can take (to keep the fight interesting, it is recommended that you keep HP below 1000). ")
+  while True:
+    try:
+      custom_hp = int(custom_hp)
+      print(f"\n{custom_name}'s HP is set to {custom_hp}")
+      break
+    except ValueError:
+      custom_hp = input(f"\nPlease enter a valid number for {custom_name}'s HP. ")
 
   custom_strength = int(input(f"\nSTRENGTH: {custom_name}'s Strength determines how effectively they are able to use their weapon for attacking and blocking, and also enables them to stop their opponent from fleeing the duel. Enter a Strength score for {custom_name} (it is recommended that you keep Strength under 30 to keep the duel interesting). "))
 
