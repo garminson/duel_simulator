@@ -76,6 +76,7 @@ class Fighter:
     return description
   
   # FIGHTER ACTIONS - attack, block, flee, taunt
+  
   # Attack method:
   def attack(self, opponent):
     # Calculate and display damage from the attack:
@@ -125,9 +126,13 @@ class Fighter:
     print(f"{opponent.name} has {max(0, opponent.hp)} HP remaining!\n")
     opponent.is_blocking = False # Makes it so that the opponent's block only lasts one turn, ending after the attack has been blocked
 
-  # Block method -- How this will work:
+  # Block method -- How this works:
     
-    # If the character chooses to block, the block score (.block_points) will be calculated using using a random number in their block_capacity (half their item's .power score), and this random number will be multiplied by their .strength score, and their damage will be reduced by the resulting number
+    # If the character chooses to block, their block score (.block_points)
+    # is calculated using a random number 
+    # in the range of half their item's .power score, 
+    # and this random number is multiplied by their .strength score, 
+    # and their damage is reduced by the resulting number
   def block(self):
     self.is_blocking = True
     block_capacity = int(self.item.power / 2)
@@ -136,7 +141,15 @@ class Fighter:
 
   # Flee method -- How it works:
    
-    # if a character tries to flee, the success of their flee attempt is calculated using a comparison of their .speed and current .hp against the opponent's .speed and .strength -- a character has less chance of successfully fleeing the more injured they are and the faster and stronger their opponent is -- if they successfully flee, their HP goes to 0 and the opponent wins the duel -- if they unsuccessfully flee, they remain in the duel and it is now the opponent's turn
+    # if a character tries to flee, 
+    # the success of their flee attempt is calculated using a comparison of
+    # their .speed and current .hp against the opponent's .speed and .strength.
+    # A character has less chance of successfully fleeing 
+    # the more injured they are and the faster and stronger their opponent is.
+    # If they successfully flee, their HP goes to 0 
+    # and the opponent wins the duel.
+    # If they unsuccessfully flee, they remain in the duel
+    # and it is now the opponent's turn.
   def flee(self, opponent):
     print(f"\n{self.name} is attempting to flee from {opponent.name}!")
     if random.randint(1, self.speed) * self.hp > random.randint(1, (opponent.strength * opponent.speed)): # (A successful flee)
