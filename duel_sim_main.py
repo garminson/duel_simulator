@@ -152,17 +152,15 @@ class Fighter:
     # and it is now the opponent's turn.
   def flee(self, opponent):
     print(f"\n{self.name} is attempting to flee from {opponent.name}!")
-    if random.randint(1, self.speed) * self.hp > random.randint(1, (opponent.strength * opponent.speed)): # (A successful flee)
+    if (random.randint(1, self.speed) * self.hp 
+        > random.randint(1, (opponent.strength * opponent.speed))):
       print(f"\n{self.name} manages to get away from {opponent.name}... this time.")
       self.hp = 0 # This will trigger victory for the other opponent
-    else: # If the above condition is not met, this means the flee attempt was unsuccessful
+    else:
       print(f"\n{opponent.name} prevented {self.name} from fleeing! The duel rages on!")
 
 
-  # Taunt method -- How this works:
-   
-    # Each fighter will have a signature taunt (in Create-a-Fighter, the player will type out their own taunt string)
-    # For now, taunting will not affect the opponent -- in a more detailed version of the game, it could affect the opponent's .morale or .courage rating, or inflict "Psychic" damage calculated based on .courage, .fortitude, or some such attribute
+  # Taunt method:
   def taunt(self, opponent):
     if self.taunt_message: # Only works if the character actually has a taunt message
       print(f"\n{self.name} taunts {opponent.name}: '{self.taunt_message}'")
@@ -218,7 +216,75 @@ speed = 1,
 item = raging_fists,
 taunt_message = "RAAAAARRR!!!")
 
-# CREATE-A-FIGHTER SYSTEM:
+# FIGHTER SELECTION FUNCTION: 
+def select_fighter():
+  # Fighter options:
+  def fighter_assign():
+    fighter_choice = int(input(""" \nCheck a Fighter's Stats by entering the Fighter's number:
+
+1. BUCKA
+  Legendary gunslinger, King of Sto.
+2. BARGOTH
+  Wielder of the Black Sword.
+3. LADONNA
+  Sorceress extraordinaire.
+4. DAH
+  Wulp...
+5. RICHAD
+  Hauh?
+6. THE INCREDIBLE
+  'RAAUHHHR!!!'
+
+"""))
+
+    while fighter_choice not in range(1, 7):
+      fighter_choice = int(input("""
+                            You pressed the wrong friggin button, ya dubba. 
+                            Enter a number from 1 to 6 to choose your Fighter."""))
+    if fighter_choice == 1:
+      player = bucka
+    elif fighter_choice == 2:
+      player = bargoth
+    elif fighter_choice == 3:
+      player = ladonna
+    elif fighter_choice == 4:
+      player = dah
+    elif fighter_choice == 5:
+      player = richad
+    elif fighter_choice == 6:
+      player = incredible
+    return player
+  
+  # Assign selected Fighter to player:
+  player = fighter_assign()
+
+  # Confirm player's Fighter selection:
+  def confirm_selection(player):
+
+    while True:
+      print(f"""\nYou have chosen {player.name.upper()}!
+
+        {player}
+
+    """)
+      confirm_selection = input(f"\nAre you sure you want to continue with {player.name}? Y / N ").upper()
+      if confirm_selection == 'Y':
+        input(f"\nFighter selection confirmed: {player.name}. Press Enter to continue. ")
+        return player
+      elif confirm_selection == 'N':
+        print("\nOK, choose a different Fighter.\n")
+        player = fighter_assign()
+      else:
+        confirm_selection = input(f"\nInvalid input. \nPlease enter Y to confirm {player.name} as your chosen Fighter, or enter N to choose a different Fighter. Y / N ")
+  
+  confirm_selection(player)
+
+  # Return player object to function call:
+  return player
+ 
+    # Add option to switch to Create-a-Fighter from here, and add option to switch from Create-a-Fighter to Select-a-Fighter
+    
+# CREATE-A-FIGHTER FUNCTION:
 def create_fighter():
   custom_name = input("\nNAME: Enter a name for your Fighter. ")
 
@@ -281,53 +347,21 @@ def create_fighter():
 
   return custom_fighter
 
-
 # INITIATE THE GAME:
 input("Welcome to DUEL SIMULATOR v1.0, by BuckaSoft LTD (2025, all rights reserved). \nPress Enter to begin. ")
 
-# Message prompting Player 1 to choose: 1) Choose from pre-made Fighters, or 2) Create your own Fighter
-p1_welcome_choice = input("\nPlayer 1, prepare to duel. \nYou may choose from one of our pre-made Fighters, or you may create your own. Enter '1' to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
+# Message prompting Player 1 to choose: 
+# 1) Choose from pre-made Fighters, or 
+# 2) Create your own Fighter
+p1_welcome_choice = input("\nPlayer 1, prepare to duel. \nYou may choose from one of our pre-made Fighters, or you may create your own. \nEnter '1' to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
 
 while p1_welcome_choice != '1' and p1_welcome_choice !='2':
   p1_welcome_choice = input("Looks like you pressed the wrong button, pardner. Enter 1 to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
+# Call select_fighter if welcome_choice = '1'
 
 # PRE-MADE FIGHTER OPTIONS FOR PLAYER 1:
 if p1_welcome_choice == '1':
-  p1_fighter_choice = input(""" \nCHOOSE YOUR FIGHTER BY ENTERING THE FIGHTER'S NUMBER:
-
-  1. BUCKA
-    Legendary gunslinger, King of Sto.
-  2. BARGOTH
-    Wielder of the Black Sword.
-  3. LADONNA
-    Sorceress extraordinaire.
-  4. DAH
-    Welp...
-  5. RICHAD
-    Hauh?
-  6. THE INCREDIBLE
-    'RAAUHHHR!!!'
-  
-  """)
-
-  if p1_fighter_choice == '1':
-    player1 = bucka
-  elif p1_fighter_choice == '2':
-    player1 = bargoth
-  elif p1_fighter_choice == '3':
-    player1 = ladonna
-  elif p1_fighter_choice == '4':
-    player1 = dah
-  elif p1_fighter_choice == '5':
-    player1 = richad
-  elif p1_fighter_choice == '6':
-    player1 = incredible
-  else:
-    p1_fighter_choice = input("You pressed the wrong friggin button, chummy. Enter a number from 1 to 6 to choose your fighter.") # Add option to switch to Create-a-Fighter from here, and add option to switch from Create-a-Fighter to Select-a-Fighter
-
-  # Message confirming fighter selection:
-  print("Player 1 has chosen {fighter}! \n".format(fighter = player1.name))
-  print(player1)
+  player1 = select_fighter()
 
 # CREATE-A-FIGHTER OPTION FOR PLAYER 1:
 if p1_welcome_choice == '2':
@@ -335,49 +369,17 @@ if p1_welcome_choice == '2':
   player1 = create_fighter()
   print(player1)
 
-# Message prompting Player 2 to choose: 1) Choose from pre-made Fighters, or 2) Create your own Fighter
-p2_welcome_choice = input("\nPlayer 2, prepare to duel. \nYou may choose from one of our pre-made Fighters, or you may create your own. Enter '1' to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
+# Message prompting Player 2 to choose: 
+# 1) Choose from pre-made Fighters, or 
+# 2) Create your own Fighter
+p2_welcome_choice = input("\nPlayer 2, prepare to duel. \nYou may choose from one of our pre-made Fighters, or you may create your own. \nEnter '1' to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
 
 while p2_welcome_choice != '1' and p2_welcome_choice != '2':
-  p2_welcome_choice = input("Looks like you pressed the wrong button, Player 2. Enter 1 to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
+  p2_welcome_choice = input("Looks like you pressed the wrong button, Player 2. \nEnter 1 to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
 
 # PRE-MADE FIGHTER SELECTION FOR PLAYER 2:
 if p2_welcome_choice == '1':
-  p2_fighter_choice = input(""" \nCHOOSE YOUR FIGHTER BY ENTERING THE FIGHTER'S NUMBER:
-
-  1. BUCKA
-    Legendary gunslinger, King of Sto.
-  2. BARGOTH
-    Wielder of the Black Sword.
-  3. LADONNA
-    Sorceress extraordinaire.
-  4. DAH
-    Welp...
-  5. RICHAD
-    Hauh?
-  6. THE INCREDIBLE
-    'RAAUHHHR!!!'
-  
-  """)
-
-  if p2_fighter_choice == '1':
-    player2 = bucka
-  elif p2_fighter_choice == '2':
-    player2 = bargoth
-  elif p2_fighter_choice == '3':
-    player2 = ladonna
-  elif p2_fighter_choice == '4':
-    player2 = dah
-  elif p2_fighter_choice == '5':
-    player2 = richad
-  elif p2_fighter_choice == '6':
-    player2 = incredible
-  else:
-    p2_fighter_choice = input("You pressed the wrong friggin button, chummy. Enter a number from 1 to 6 to choose your fighter.") # Add option to switch to Create-a-Fighter from here, and add option to switch from Create-a-Fighter to Select-a-Fighter
-
-  # Message confirming fighter selection:
-  print("Player 2 has chosen {fighter}! \n".format(fighter = player2.name))
-  print(player2)
+  player2 = select_fighter()
 
 # CREATE-A-FIGHTER OPTION FOR PLAYER 2:
 if p2_welcome_choice == '2':
