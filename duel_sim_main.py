@@ -79,9 +79,17 @@ class Fighter:
   # Attack method:
   def attack(self, opponent):
     # Calculate and display damage from the attack:
-    opponent_damage = (random.randint(self.strength, self.item.power) * self.strength)
+    opponent_damage = (random.randint(min(self.strength, self.item.power)), 
+                       max(self.strength, self.item.power)) * self.strength
       # How opponent_damage is calculated: 
-      # A character's strength score represents the minimum damage that they can inflict, while the power score of their item represents the max damage that they can inflict (therefore, you should make sure that an item's power is higher than the character's strength, or else the item is functionally useless!). The base damage is a random number between their strength score and their item's power, and the final damage is calculated by multiplying base damage times their strength score.
+      # The minimum damage that a character can inflict 
+      # is either their strength or their item's power,
+      # whichever number is lower.
+      # The max damage they can inflict is
+      # their strength multiplied by their item's power. 
+      # Base damage is a random number in the range between
+      # their strength score and their item's power, 
+      # and final damage is base damage multiplied by strength score.
     print(f"\n{self.name} attacks {opponent.name} with {self.item.name}, dealing {opponent_damage} {self.item.damage_type} damage!")
     
     # Check if opponent .is_blocking at the time of the attack:
