@@ -80,8 +80,9 @@ class Fighter:
   # Attack method:
   def attack(self, opponent):
     # Calculate and display damage from the attack:
-    opponent_damage = (random.randint(min(self.strength, self.item.power)), 
-                       max(self.strength, self.item.power)) * self.strength
+    opponent_damage = (random.randint(min(self.strength, self.item.power), 
+                                      max(self.strength, self.item.power)) 
+                                      * self.strength)
       # How opponent_damage is calculated: 
       # The minimum damage that a character can inflict 
       # is either their strength or their item's power,
