@@ -33,14 +33,22 @@ raging_fists = Item("Raging Fists", "Bludgeoning", 40, True)
 # FIGHTER CLASS:
 class Fighter:
 
-# FIGHTER ATTRIBUTES - name, HP, XP, strength, speed, item, armor, taunt:
-  def __init__(self, name, hp = 100, xp = 0, strength = 0, speed = 1, item = None, armor = None, taunt_message = None):
+# FIGHTER ATTRIBUTES:
+  def __init__(self, 
+               name, 
+               hp = 100, 
+               xp = 0, 
+               strength = 0, 
+               speed = 1, 
+               item = None, 
+               armor = None, 
+               taunt_message = None):
     self.name = name
     self.hp = hp
     self.xp = xp
     self.strength = strength
-    self.speed = speed # <-- Speed affects initiative roll at the start of the duel; in a more detailed version of the game, it could also affect blocking ability, or a .dodge() method, etc.
-    self.item = item # <-- Keeping it simple with one item per character (for now)
+    self.speed = speed
+    self.item = item
     self.armor = armor
     self.is_blocking = False
     self.block_points = 0
@@ -61,7 +69,7 @@ class Fighter:
       strength = self.strength, 
       speed = self.speed,
       item_names=item_names,
-      armor_type = armor_type) #<-- This ensures that if there are no items, "nothing" is displayed instead of a blank space
+      armor_type = armor_type)
     if self.item.is_legendary == True:
       description += f"""
     {self.name}'s {self.item.name} is a LEGENDARY weapon with a Power rating of {self.item.power}."""
@@ -72,7 +80,8 @@ class Fighter:
   def attack(self, opponent):
     # Calculate and display damage from the attack:
     opponent_damage = (random.randint(self.strength, self.item.power) * self.strength)
-      # How opponent_damage is calculated: A character's strength score represents the minimum base damage that they can inflict, while the power score of their item represents the max damage that they can inflict (therefore, you should make sure that an item's power is higher than the character's strength, or else the item is functionally useless!). The base damage is a random number between their strength score and their item's power, and the final damage is calculated by multiplying base damage times their strength score.
+      # How opponent_damage is calculated: 
+      # A character's strength score represents the minimum damage that they can inflict, while the power score of their item represents the max damage that they can inflict (therefore, you should make sure that an item's power is higher than the character's strength, or else the item is functionally useless!). The base damage is a random number between their strength score and their item's power, and the final damage is calculated by multiplying base damage times their strength score.
     print(f"\n{self.name} attacks {opponent.name} with {self.item.name}, dealing {opponent_damage} {self.item.damage_type} damage!")
     
     # Check if opponent .is_blocking at the time of the attack:
@@ -354,7 +363,6 @@ if p2_welcome_choice == '2':
   print("You chose to create your own Fighter.\n")
   player2 = create_fighter()
   print(player2)
-
 
 # AUTOMATED BATTLE SYSTEM:
 
