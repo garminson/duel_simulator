@@ -302,12 +302,25 @@ def create_fighter():
   while True:
     try:
       custom_hp = int(custom_hp)
-      print(f"\n{custom_name}'s HP is set to {custom_hp}")
+      print(f"\n{custom_name}'s HP is set to {custom_hp}.")
       break
     except ValueError:
-      custom_hp = input(f"\nPlease enter a valid number for {custom_name}'s HP. ")
+      custom_hp = input(f"\nUhhh... enter a valid number for {custom_name}'s HP. ")
+      dubba_counter += 1
+      if dubba_counter > 4:
+        custom_hp = 100
+        print(f"\nYou can't seem to figure this out, so I'll set your HP to 100, how about that? Friggin dub... Sheesh... ")
 
-  custom_strength = int(input(f"\nSTRENGTH: {custom_name}'s Strength determines how effectively they are able to use their weapon for attacking and blocking, and also enables them to stop their opponent from fleeing the duel. Enter a Strength score for {custom_name} (it is recommended that you keep Strength under 30 to keep the duel interesting). "))
+  custom_strength = input(f"\nSTRENGTH: {custom_name}'s Strength determines how effectively they are able to use their weapon for attacking and blocking, and also enables them to stop their opponent from fleeing the duel. Enter a Strength score for {custom_name} (it is recommended that you keep Strength under 30 to keep the duel interesting). ")
+  while True:
+    try:
+      custom_strength = int(custom_strength)
+      while custom_strength > 100:
+        custom_strength = input(f"\nYou friggin' numbskull, I ain't lettin' you set {custom_name}'s Strength that high. Try a lower number. ")
+      print(f"\n{custom_name}'s Strength is set to {custom_strength}.")
+      break
+    except ValueError:
+      custom_strength = input("What kinda dubbah are you? That ain't a number. Enter a NUMBER. ")
 
   custom_speed = int(input(f"\nSPEED: {custom_name}'s Speed determines their initiative: the faster they are, the more likely they are to land the first blow in a duel. Speed also determines {custom_name}'s ability to flee the duel if they are frightened or hurt, and their ability to stop opponents from fleeing. Enter a Speed score for {custom_name} (it is recommended that you keep Speed under 10). "))
 
