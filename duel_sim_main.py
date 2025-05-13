@@ -27,7 +27,15 @@ bb_gun = Item("BB Gun", "Projectile", 10)
 
 dowel = Item("Dowel", "Bludgeoning", 7)
 
+b_made_hands = Item("B-Made Hands", "B-Made", 5)
+
+expo_marker = Item("Expo Marker", "Projectile", 5)
+
+fists = Item("Fists", "Bludgeoning", 15)
+
 raging_fists = Item("Raging Fists", "Bludgeoning", 40, True)
+
+fire_breath = Item("Fire Breath", "Fire", 70, True)
 
 # FIGHTER CLASS:
 class Fighter:
@@ -166,6 +174,7 @@ class Fighter:
       print(f"\n{self.name} taunts {opponent.name}: '{self.taunt_message}'")
 
 # PRE-MADE FIGHTERS:
+# FAMILY MYTHOS:
 # Bucka
 bucka = Fighter("Bucka", 
 hp = 1000, 
@@ -207,6 +216,26 @@ speed = 7,
 item = dowel,
 taunt_message = "Hauhhh?")
 
+# Garminson
+garminson = Fighter("Garminson",
+                    strength = 3,
+                    speed = 15,
+                    item = b_made_hands,
+                    taunt_message = "I'm gonna spank ya...")
+
+uncle_barney = Fighter("Uncle Barney",
+                       hp = 150,
+                       speed = 12,
+                       item = expo_marker,
+                       taunt_message = "*farts loudly*")
+
+rocker = Fighter("Rocker",
+                 hp = 350,
+                 strength = 15,
+                 speed = 10,
+                 item = fists,
+                 taunt_message = "GET REKT!")
+
 # The Incredible
 incredible = Fighter("The Incredible", 
 hp = 1500,
@@ -214,6 +243,23 @@ strength = 30,
 speed = 1,
 item = raging_fists,
 taunt_message = "RAAAAARRR!!!")
+
+# ANIMALS
+# Gorilla
+gorilla = Fighter("Silverback Gorilla",
+                  hp = 1500,
+                  strength = 40,
+                  speed = 3,
+                  item = raging_fists,
+                  taunt_message = "Hoo-hoo-HOOO-HOO!")
+
+# Dragon
+dragon = Fighter("Fire-Breathing Dragon",
+                 hp = 2000,
+                 strength = 100,
+                 speed = 5,
+                 item = fire_breath,
+                 taunt_message = "RAAAAOOOAARRRR!!!")
 
 # FIGHTER SELECTION FUNCTION: 
 def select_fighter():
@@ -231,12 +277,22 @@ def select_fighter():
   Wulp...
 5. RICHAD
   Hauh?
-6. THE INCREDIBLE
+6. GARMINSON
+  B-made.
+7. UNCLE BARNEY
+  Everybody's least favorite uncle.
+8. ROCKER
+  "Get ROCKED."
+9. THE INCREDIBLE
   'RAAUHHHR!!!'
-
+10. SILVERBACK GORILLA
+  Go-RILL-a
+11. FIRE-BREATHING DRAGON
+  Why do I hear boss music?
+                               
 """))
 
-    while fighter_choice not in range(1, 7):
+    while fighter_choice not in range(1, 12):
       fighter_choice = int(input("""
                             You pressed the wrong friggin button, ya dubba. 
                             Enter a number from 1 to 6 to choose your Fighter."""))
@@ -251,7 +307,17 @@ def select_fighter():
     elif fighter_choice == 5:
       player = richad
     elif fighter_choice == 6:
+      player = garminson
+    elif fighter_choice == 7:
+      player = uncle_barney
+    elif fighter_choice == 8:
+      player = rocker
+    elif fighter_choice == 9:
       player = incredible
+    elif fighter_choice == 10:
+      player = gorilla
+    elif fighter_choice == 11:
+      player = dragon
     return player
   
   # Assign selected Fighter to player:
