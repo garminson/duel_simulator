@@ -594,7 +594,7 @@ while game_on == True:
     GAME OVER
     
     Thank you for playing DUEL SIMULATOR!""")
-    break
+    game_on = False
 
 
 ## END OF PROGRAM (for now) ##
