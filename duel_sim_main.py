@@ -505,17 +505,13 @@ def duel(player1, player2):
       # then active_player will choose .block()
       if block_chance > passive_player.item.power - active_player.item.power:
         choose_block = True
-        # choice = "choose_block"
       else:
         choose_block = False
-    
+ 
     else: 
       # If neither condition is met, active_player will not block
       choose_block = False
-    
-    # If BLOCK and FLEE are both True, choose one randomly:
-        # if choose_block and choose_flee:
-        #   choice = random.choice(["choose_block", "choose_flee"])
+
 
     # TAUNT option:
       # 3 conditions may trigger .taunt() chance:
@@ -540,12 +536,11 @@ def duel(player1, player2):
           choose_taunt = False
     else:
       choose_taunt = False
-        # if choose_taunt == True:
-        #   choice = "choose_taunt"
     
     # Executing the player's chosen action:
     if choose_block:
       active_player.block()
+      # choose_flee only if not choose_block
     elif choose_flee:
       active_player.flee(passive_player)
     elif choose_taunt:
