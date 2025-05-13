@@ -345,12 +345,15 @@ def create_fighter():
   Piercing damage and Projectile damage penetrate Leather and Fabric armor. 
   Bludgeoning damage penetrates Leather and Metal armor.
   Enter one of the following Damage Types for {custom_item_name}: Slashing, Piercing, Projectile, or Bludgeoning. """).title()
-  if custom_item_damage_type != "Slashing" and custom_item_damage_type != "Piercing" and custom_item_damage_type != "Projectile" and custom_item_damage_type != "Bludgeoning":
+  if (custom_item_damage_type != "Slashing" 
+      and custom_item_damage_type != "Piercing" 
+      and custom_item_damage_type != "Projectile" 
+      and custom_item_damage_type != "Bludgeoning"):
     custom_item_damage_type = input("\nOops, looks like you entered an invalid Damage Type. Enter one of the following options: Slashing, Piercing, Projectile, or Bludgeoning. ")
 
   custom_item_power = int(input(f"\nPOWER: Your Weapon's Power rating determines how much damage it can dish out. Enter a Power rating for {custom_item_name} (to keep things interesting, it's recommended that you keep your weapon's Power rating under 50). "))
 
-  custom_item_is_legendary = input(f"\nIs {custom_item_name} a Legendary weapon? If so, enter the true name of Bucka. ")
+  custom_item_is_legendary = input(f"\nIs {custom_item_name} a Legendary weapon? If so, enter the true name of Bucka. ").title()
   if custom_item_is_legendary == "Roger":
     custom_item_is_legendary = True
     print(f"\nTruly, {custom_item_name} is a Legendary weapon! Only the worthy may wield it.")
