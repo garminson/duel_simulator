@@ -376,47 +376,54 @@ def create_fighter():
   return custom_fighter
 
 # INITIATE THE GAME:
-input("Welcome to DUEL SIMULATOR v1.0, by BuckaSoft LTD (2025, all rights reserved). \nPress Enter to begin. ")
+# start_game() function enables replayability
+# when the duel ends:
+def start_game():
 
-# Message prompting Player 1 to choose: 
-# 1) Choose from pre-made Fighters, or 
-# 2) Create your own Fighter
-p1_welcome_choice = input("\nPlayer 1, prepare to duel. \nYou may choose from one of our pre-made Fighters, or you may create your own. \nEnter '1' to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
+  input("Welcome to DUEL SIMULATOR v1.0, by BuckaSoft LTD (2025, all rights reserved). \nPress Enter to begin. ")
 
-while p1_welcome_choice != '1' and p1_welcome_choice !='2':
-  p1_welcome_choice = input("Looks like you pressed the wrong button, pardner. Enter 1 to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
-# Call select_fighter if welcome_choice = '1'
+  # Message prompting Player 1 to choose: 
+  # 1) Choose from pre-made Fighters, or 
+  # 2) Create your own Fighter
+  p1_welcome_choice = input("\nPlayer 1, prepare to duel. \nYou may choose from one of our pre-made Fighters, or you may create your own. \nEnter '1' to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
 
-# PRE-MADE FIGHTER OPTIONS FOR PLAYER 1:
-if p1_welcome_choice == '1':
-  player1 = select_fighter()
+  while p1_welcome_choice != '1' and p1_welcome_choice !='2':
+    p1_welcome_choice = input("Looks like you pressed the wrong button, pardner. Enter 1 to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
+  # Call select_fighter if welcome_choice = '1'
 
-# CREATE-A-FIGHTER OPTION FOR PLAYER 1:
-if p1_welcome_choice == '2':
-  print("You chose to create your own Fighter.\n")
-  player1 = create_fighter()
-  print(player1)
+  # PRE-MADE FIGHTER OPTIONS FOR PLAYER 1:
+  if p1_welcome_choice == '1':
+    player1 = select_fighter()
 
-# Message prompting Player 2 to choose: 
-# 1) Choose from pre-made Fighters, or 
-# 2) Create your own Fighter
-p2_welcome_choice = input("\nPlayer 2, prepare to duel. \nYou may choose from one of our pre-made Fighters, or you may create your own. \nEnter '1' to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
+  # CREATE-A-FIGHTER OPTION FOR PLAYER 1:
+  if p1_welcome_choice == '2':
+    print("You chose to create your own Fighter.\n")
+    player1 = create_fighter()
+    print(player1)
 
-while p2_welcome_choice != '1' and p2_welcome_choice != '2':
-  p2_welcome_choice = input("Looks like you pressed the wrong button, Player 2. \nEnter 1 to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
+  # Message prompting Player 2 to choose: 
+  # 1) Choose from pre-made Fighters, or 
+  # 2) Create your own Fighter
+  p2_welcome_choice = input("\nPlayer 2, prepare to duel. \nYou may choose from one of our pre-made Fighters, or you may create your own. \nEnter '1' to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
 
-# PRE-MADE FIGHTER SELECTION FOR PLAYER 2:
-if p2_welcome_choice == '1':
-  player2 = select_fighter()
+  while p2_welcome_choice != '1' and p2_welcome_choice != '2':
+    p2_welcome_choice = input("Looks like you pressed the wrong button, Player 2. \nEnter 1 to see our pre-made Fighters, or Enter '2' to create your own Fighter. ")
 
-# CREATE-A-FIGHTER OPTION FOR PLAYER 2:
-if p2_welcome_choice == '2':
-  print("You chose to create your own Fighter.\n")
-  player2 = create_fighter()
-  print(player2)
+  # PRE-MADE FIGHTER SELECTION FOR PLAYER 2:
+  if p2_welcome_choice == '1':
+    player2 = select_fighter()
+
+  # CREATE-A-FIGHTER OPTION FOR PLAYER 2:
+  if p2_welcome_choice == '2':
+    print("You chose to create your own Fighter.\n")
+    player2 = create_fighter()
+    print(player2)
+  
+  return player1, player2
+
+player1, player2 = start_game()
 
 # AUTOMATED BATTLE SYSTEM:
-
 # THE BATTLE FUNCTION:
 def battle(player1, player2):
 
@@ -577,8 +584,14 @@ battle(player1, player2)
 
 # Function to restart game:
 #def restart_game():
-#input("\nWould you like to play again? Y / N ")
+#restart_choice = input("\nWould you like to play again? Y / N ").upper()
+#if restart_choice = 'Y':
+  #start_game()
+#else:
+  #print("""
+  # GAME OVER
+  # 
+  # Thank you for playing DUEL SIMULATOR!""")
 
-# restart_game
 
 ## END OF PROGRAM (for now) ##
