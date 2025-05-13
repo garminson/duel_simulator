@@ -421,11 +421,9 @@ def start_game():
   
   return player1, player2
 
-player1, player2 = start_game()
-
-# AUTOMATED BATTLE SYSTEM:
-# THE BATTLE FUNCTION:
-def battle(player1, player2):
+# AUTOMATED DUEL SYSTEM:
+# THE DUEL FUNCTION:
+def duel(player1, player2):
 
   input(f"""
         Fighters have been chosen...
@@ -578,20 +576,25 @@ def battle(player1, player2):
     
     # Switch players -- it is now the other player's turn:
     active_player, passive_player = passive_player, active_player
-    
-# INITIATE THE BATTLE!
-battle(player1, player2)
 
-# Function to restart game:
-#def restart_game():
-#restart_choice = input("\nWould you like to play again? Y / N ").upper()
-#if restart_choice = 'Y':
-  #start_game()
-#else:
-  #print("""
-  # GAME OVER
-  # 
-  # Thank you for playing DUEL SIMULATOR!""")
+# On/Off Switch for Replayability:
+game_on = True
+
+# GAMEPLAY LOOP:
+while game_on == True:
+  player1, player2 = start_game()
+  duel(player1, player2)
+
+# RESTART GAME OPTION AT END OF DUEL:
+  restart_choice = input("\nWould you like to play again? Y / N ").upper()
+  if restart_choice == 'Y':
+    continue
+  else:
+    print("""
+    GAME OVER
+    
+    Thank you for playing DUEL SIMULATOR!""")
+    break
 
 
 ## END OF PROGRAM (for now) ##
