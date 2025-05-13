@@ -372,9 +372,15 @@ def create_fighter():
       and custom_item_damage_type != "Projectile" 
       and custom_item_damage_type != "Bludgeoning"):
     custom_item_damage_type = input("\nOops, looks like you entered an invalid Damage Type. Enter one of the following options: Slashing, Piercing, Projectile, or Bludgeoning. ").title()
-    break
 
-  custom_item_power = int(input(f"\nPOWER: Your Weapon's Power rating determines how much damage it can dish out. Enter a Power rating for {custom_item_name} (to keep things interesting, it's recommended that you keep your Weapon's Power rating under 50). "))
+  custom_item_power = input(f"\nPOWER: Your Weapon's Power rating determines how much {custom_item_damage_type} damage it can dish out. Enter a Power rating for {custom_item_name} (to keep things interesting, it's recommended that you keep your Weapon's Power rating under 50). ")
+  while True:
+    try:
+      custom_item_power = int(custom_item_power)
+      print(f"\n{custom_item_name}'s Power rating is {custom_item_power}.")
+      break
+    except ValueError:
+      custom_item_power = input(f"\nEnter a number for {custom_item_name}'s Power rating. A NUMBER. ")
 
   custom_item_is_legendary = input(f"\nIs {custom_item_name} a Legendary weapon? If so, enter the true name of Bucka. ").title()
   if custom_item_is_legendary == "Roger":
