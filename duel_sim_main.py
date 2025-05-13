@@ -44,7 +44,6 @@ class Fighter:
   def __init__(self, 
                name, 
                hp = 100, 
-               xp = 0, 
                strength = 0, 
                speed = 1, 
                item = None, 
