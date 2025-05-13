@@ -51,7 +51,6 @@ class Fighter:
                taunt_message = None):
     self.name = name
     self.hp = hp
-    self.xp = xp
     self.strength = strength
     self.speed = speed
     self.item = item
