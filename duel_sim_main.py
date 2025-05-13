@@ -566,7 +566,7 @@ def duel(player1, player2):
       print(f"""
       {player2.name} has been vanquished! {player1.name} wins! 
             
-      GAME OVER""")
+   """)
       break
 
     # User inputs to trigger the next turn:
