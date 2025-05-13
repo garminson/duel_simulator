@@ -324,22 +324,20 @@ def create_fighter():
       #if type(custom_strength) != int:
       custom_strength = input(f"\nWhat kinda dubbah are you? {custom_strength} ain't a number. Enter a NUMBER. ")
 
-
   custom_speed = input(f"\nSPEED: {custom_name}'s Speed determines their initiative: the faster they are, the more likely they are to land the first blow in a duel. Speed also determines {custom_name}'s ability to flee the duel if they are frightened or hurt, and their ability to stop opponents from fleeing. Enter a Speed score for {custom_name} (it is recommended that you keep Speed under 10). ")
   while True:
     try:
       custom_speed = int(custom_speed)
       if custom_speed > 20:
         custom_speed = input(f"\nBuddy, I am not letting you set your Fighter's speed to friggin' {custom_speed}. Keep it undah 20, wouldya? Enter a lower number. ")
-        if custom_speed <= 20:
-          print(f"\nThat's more like it, chummy.") 
+      if int(custom_speed) <= 20:
+        custom_speed = int(custom_speed)
+        print(f"\nThat's more like it, chummy.")
+        break 
     except ValueError:
-      while type(custom_speed) != int:
         custom_speed = input("\nWhat kinda dubwad are you? That ain't a number. Enter a NUMBER. ")
-    break
-  print(f"\n{custom_name}'s Speed will be set to {custom_speed}. Movin' on...")
-          
 
+  print(f"\n{custom_name}'s Speed will be set to {custom_speed}. Movin' on...")
 
   custom_armor = input(f"""\nARMOR: {custom_name}'s Armor will protect them from certain types of damage: 
   Leather resists Slashing damage. 
@@ -352,7 +350,6 @@ def create_fighter():
       and custom_armor != "Fabric" 
       and custom_armor != "None"):
     custom_armor = input("\nEnter one of the following Armor options: Leather, Metal, Fabric, or None. ").title()
-    break
   print("\n{custom_name} will {custom_armor}.".format(
     custom_name = custom_name, 
     custom_armor = "wear " + custom_armor 
