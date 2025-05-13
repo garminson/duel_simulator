@@ -29,7 +29,6 @@ dowel = Item("Dowel", "Bludgeoning", 7)
 
 raging_fists = Item("Raging Fists", "Bludgeoning", 40, True)
 
-
 # FIGHTER CLASS:
 class Fighter:
 
@@ -96,7 +95,7 @@ class Fighter:
     
     # Check if opponent .is_blocking at the time of the attack:
     if opponent.is_blocking:
-      print(f"\n{opponent.name} uses {opponent.item.name} to block {opponent.block_points} damage points from {self.name}'s attack!") # block_points will lessen the opponent's damage score within each conditional check below -- there may be a more concise way to do this...
+      print(f"\n{opponent.name} uses {opponent.item.name} to block {opponent.block_points} damage points from {self.name}'s attack!")
 
      # Accounting for opponent's .armor attribute -- Leather resists slashing, Metal resists piercing and projectile, Fabric resists bludgeoning, nothing resists Magic:
     if "Slashing" in self.item.damage_type and opponent.armor == "Leather":
@@ -125,7 +124,7 @@ class Fighter:
       opponent.hp -= opponent_damage
     print(f"{opponent.name} takes {opponent_damage} damage from {self.name}'s {self.item.name}!\n")
     print(f"{opponent.name} has {max(0, opponent.hp)} HP remaining!\n")
-    opponent.is_blocking = False # Makes it so that the opponent's block only lasts one turn, ending after the attack has been blocked
+    opponent.is_blocking = False
 
   # Block method -- How this works:
     
@@ -165,7 +164,6 @@ class Fighter:
   def taunt(self, opponent):
     if self.taunt_message: # Only works if the character actually has a taunt message
       print(f"\n{self.name} taunts {opponent.name}: '{self.taunt_message}'")
-
 
 # PRE-MADE FIGHTERS:
 # Bucka
