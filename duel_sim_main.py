@@ -305,7 +305,7 @@ def create_fighter():
     except ValueError:
       custom_hp = input(f"\nUhhh... enter a valid number for {custom_name}'s HP. ")
       dubba_counter += 1
-      if dubba_counter > 4:
+      if dubba_counter > 3:
         custom_hp = 100
         print(f"\nYou can't seem to figure this out, so I'll set your HP to 100, how about that? Friggin dub... Sheesh... ")
 
@@ -313,14 +313,33 @@ def create_fighter():
   while True:
     try:
       custom_strength = int(custom_strength)
-      while custom_strength > 100:
-        custom_strength = input(f"\nYou friggin' numbskull, I ain't lettin' you set {custom_name}'s Strength that high. Try a lower number. ")
-      print(f"\n{custom_name}'s Strength is set to {custom_strength}.")
-      break
+      if custom_strength > 100:
+        print(f"\nYou friggin' numbskull, I ain't lettin' you set {custom_name}'s Strength that high. Try a lower number. ")
+        custom_strength = input("\nTry entering a lower number, bub. ")
+      if int(custom_strength) < 100:
+        custom_strength = int(custom_strength)
+        print(f"\n{custom_name}'s Strength is set to {custom_strength}.")
+        break
     except ValueError:
-      custom_strength = input("What kinda dubbah are you? That ain't a number. Enter a NUMBER. ")
+      #if type(custom_strength) != int:
+      custom_strength = input(f"\nWhat kinda dubbah are you? {custom_strength} ain't a number. Enter a NUMBER. ")
 
-  custom_speed = int(input(f"\nSPEED: {custom_name}'s Speed determines their initiative: the faster they are, the more likely they are to land the first blow in a duel. Speed also determines {custom_name}'s ability to flee the duel if they are frightened or hurt, and their ability to stop opponents from fleeing. Enter a Speed score for {custom_name} (it is recommended that you keep Speed under 10). "))
+
+  custom_speed = input(f"\nSPEED: {custom_name}'s Speed determines their initiative: the faster they are, the more likely they are to land the first blow in a duel. Speed also determines {custom_name}'s ability to flee the duel if they are frightened or hurt, and their ability to stop opponents from fleeing. Enter a Speed score for {custom_name} (it is recommended that you keep Speed under 10). ")
+  while True:
+    try:
+      custom_speed = int(custom_speed)
+      if custom_speed > 20:
+        custom_speed = input(f"\nBuddy, I am not letting you set your Fighter's speed to friggin' {custom_speed}. Keep it undah 20, wouldya? Enter a lower number. ")
+        if custom_speed <= 20:
+          print(f"\nThat's more like it, chummy.") 
+    except ValueError:
+      while type(custom_speed) != int:
+        custom_speed = input("\nWhat kinda dubwad are you? That ain't a number. Enter a NUMBER. ")
+    break
+  print(f"\n{custom_name}'s Speed will be set to {custom_speed}. Movin' on...")
+          
+
 
   custom_armor = input(f"""\nARMOR: {custom_name}'s Armor will protect them from certain types of damage: 
   Leather resists Slashing damage. 
@@ -328,11 +347,17 @@ def create_fighter():
   Fabric resists Bludgeoning damage. 
   Enter one of the following Armor types: Leather, Metal, or Fabric.
   Or, enter 'None' if you want {custom_name} to fight NAKED. """).title()
-  if custom_armor != "Leather" and custom_armor != "Metal" and custom_armor != "Fabric" and custom_armor != "None":
+  while (custom_armor != "Leather" 
+      and custom_armor != "Metal" 
+      and custom_armor != "Fabric" 
+      and custom_armor != "None"):
     custom_armor = input("\nEnter one of the following Armor options: Leather, Metal, Fabric, or None. ").title()
+    break
   print("\n{custom_name} will {custom_armor}.".format(
     custom_name = custom_name, 
-    custom_armor = "wear " + custom_armor if custom_armor != "None" else "fight naked.."))
+    custom_armor = "wear " + custom_armor 
+    if custom_armor != "None" 
+    else "fight naked.."))
 
   custom_taunt = input(f"\nTAUNT: If {custom_name} gains the upper hand in a duel, they may taunt their opponent. Enter a Taunt message for {custom_name}: ")
 
@@ -345,13 +370,14 @@ def create_fighter():
   Piercing damage and Projectile damage penetrate Leather and Fabric armor. 
   Bludgeoning damage penetrates Leather and Metal armor.
   Enter one of the following Damage Types for {custom_item_name}: Slashing, Piercing, Projectile, or Bludgeoning. """).title()
-  if (custom_item_damage_type != "Slashing" 
+  while (custom_item_damage_type != "Slashing" 
       and custom_item_damage_type != "Piercing" 
       and custom_item_damage_type != "Projectile" 
       and custom_item_damage_type != "Bludgeoning"):
-    custom_item_damage_type = input("\nOops, looks like you entered an invalid Damage Type. Enter one of the following options: Slashing, Piercing, Projectile, or Bludgeoning. ")
+    custom_item_damage_type = input("\nOops, looks like you entered an invalid Damage Type. Enter one of the following options: Slashing, Piercing, Projectile, or Bludgeoning. ").title()
+    break
 
-  custom_item_power = int(input(f"\nPOWER: Your Weapon's Power rating determines how much damage it can dish out. Enter a Power rating for {custom_item_name} (to keep things interesting, it's recommended that you keep your weapon's Power rating under 50). "))
+  custom_item_power = int(input(f"\nPOWER: Your Weapon's Power rating determines how much damage it can dish out. Enter a Power rating for {custom_item_name} (to keep things interesting, it's recommended that you keep your Weapon's Power rating under 50). "))
 
   custom_item_is_legendary = input(f"\nIs {custom_item_name} a Legendary weapon? If so, enter the true name of Bucka. ").title()
   if custom_item_is_legendary == "Roger":
@@ -593,6 +619,5 @@ while game_on == True:
     
     Thank you for playing DUEL SIMULATOR!""")
     game_on = False
-
 
 ## END OF PROGRAM (for now) ##
