@@ -572,7 +572,7 @@ def duel(player1, player2):
         (active_player.item.is_legendary == False 
          and passive_player.item.is_legendary == True)):
       # Assess difference in strength between the 2 players
-      strength_diff = abs(active_player.strength - passive_player.strength) 
+      strength_diff = abs(active_player.strength - passive_player.strength if active_player.strength != passive_player.strength else random.randint(1, 10)) 
       # Assess fear: a random number in the range of strength_diff 
       fear = random.randint(1, strength_diff)
       # If active_player's fear exceeds half of strength_diff 
@@ -633,7 +633,7 @@ def duel(player1, player2):
               and passive_player.item.is_legendary == False)):
       # Randomizing taunt_chance using strength_diff
       # ensures that player is not stuck taunting forever!
-      strength_diff = abs(active_player.strength - passive_player.strength)
+      strength_diff = abs(active_player.strength - passive_player.strength if active_player.strength != passive_player.strength else random.randint(1, 10))
       taunt_chance = random.randint(1, strength_diff)
         # Player chooses to taunt if random taunt_chance
         # exceeds 75% of strength_diff
