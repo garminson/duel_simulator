@@ -144,7 +144,7 @@ class Fighter:
     self.is_blocking = True
     block_capacity = int(self.item.power / 2)
     self.block_points = random.randint(1, block_capacity) * self.strength
-    print(f"{self.name} gets into a defensive stance...")
+    print(f"\n{self.name} gets into a defensive stance...")
 
   # Flee method -- How it works:
    
@@ -595,7 +595,6 @@ def duel(player1, player2):
       # then active_player will choose .block()
       if block_chance > (passive_player.hp - active_player.hp) / 2:
         choose_block = True
-        # choice = "choose_block"
       else:
         choose_block = False
 
