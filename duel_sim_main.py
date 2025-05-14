@@ -223,6 +223,7 @@ garminson = Fighter("Garminson",
 
 uncle_barney = Fighter("Uncle Barney",
                        hp = 150,
+                       strength = 5,
                        speed = 12,
                        item = expo_marker,
                        taunt_message = "*farts loudly*")
