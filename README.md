@@ -76,7 +76,7 @@ I had plenty of other ideas for game features, including, but not limited to: sa
 
 ## How to Play
 1. Download the latest version of Python
-2. Download the game
+2. Download [duel_sim_main.py]((https://github.com/garminson/duel_simulator/blob/main/duel_sim_main.py)) or clone this repository
 3. Open the Terminal app on your computer
 4. Run the game by entering the following command in Terminal: `python3 duel_sim_main.py`
 5. Follow the on-screen directions!
