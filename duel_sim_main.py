@@ -131,6 +131,7 @@ class Fighter:
     print(f"{opponent.name} takes {opponent_damage} damage from {self.name}'s {self.item.name}!\n")
     print(f"{opponent.name} has {max(0, opponent.hp)} HP remaining!\n")
     opponent.is_blocking = False
+    opponent.block_points = 0
 
   # Block method -- How this works:
     
