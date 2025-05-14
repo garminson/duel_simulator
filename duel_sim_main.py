@@ -436,7 +436,7 @@ def start_game():
       while fighter_choice not in range(1, 12):
         fighter_choice = int(input("""
                               You pressed the wrong friggin button, ya dubba. 
-                              Enter a number from 1 to 6 to choose your Fighter."""))
+                              Enter a number from 1 to 11 to choose your Fighter."""))
       if fighter_choice == 1:
         player = bucka
       elif fighter_choice == 2:
@@ -488,7 +488,7 @@ def start_game():
     # Return player object to function call:
     return player
   
-      # Add option to switch to Create-a-Fighter from here, and add option to switch from Create-a-Fighter to Select-a-Fighter
+  # Add option to switch between Fighter Select and Create-a-Fighter
 
   input("Welcome to DUEL SIMULATOR v1.0, by BuckaSoft LTD (2025, all rights reserved). \nPress Enter to begin. ")
 
