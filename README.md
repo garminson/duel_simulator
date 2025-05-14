@@ -51,7 +51,7 @@ Presents the user with a list of pre-made Fighters to choose from. Upon selectin
 Guides the user through the creation of their own custom Fighter, with humorous error handling messages displayed in case the user enters an invalid value at any stage of the Fighter creation process.
 
 #### `duel()`
-This function is called after both players haveThis function takes two arguments: `player1` and `player2`, which are first defined in the `select_fighter()` or `create_fighter()` function call within the `start_game()` function.
+This function is called after both players have either chosen or created Fighters. The `duel()` function takes two arguments: `player1` and `player2`, which are first defined in the `select_fighter()` or `create_fighter()` function call within the `start_game()` function.
 
 The duel begins with an initiative roll to determine which Fighter gets the first move. Initiative is calculated DnD-style using random integers between 1 and 20 multiplied by each Fighter's speed.
 
