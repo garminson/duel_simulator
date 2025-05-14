@@ -557,6 +557,12 @@ def duel(player1, player2):
 
   # Nested function to determine active_player's chosen action for the current turn:
   def choose_action(active_player, passive_player):
+    # Initialize action choice variables to False,
+    # thereby assigning .attack() as default action
+    # (avoids UnboundLocalError later):
+    choose_flee = False
+    choose_block = False
+    choose_taunt = False
 
     # FLEE option:
     # 2 conditions may trigger .flee() chance: 
@@ -627,16 +633,15 @@ def duel(player1, player2):
               and passive_player.item.is_legendary == False)):
       # Randomizing taunt_chance using strength_diff
       # ensures that player is not stuck taunting forever!
-      if active_player.strength > passive_player.strength:
-        strength_diff = abs(active_player.strength - passive_player.strength)
-        taunt_chance = random.randint(1, strength_diff)
+      strength_diff = abs(active_player.strength - passive_player.strength)
+      taunt_chance = random.randint(1, strength_diff)
         # Player chooses to taunt if random taunt_chance
         # exceeds 75% of strength_diff
         # (i.e. in 25% of cases where taunt_chance is triggered)
-        if taunt_chance > 0.75 * strength_diff:
-          choose_taunt = True
-        else:
-          choose_taunt = False
+      if taunt_chance > 0.75 * strength_diff:
+        choose_taunt = True
+      else:
+        choose_taunt = False
     else:
       choose_taunt = False
     
