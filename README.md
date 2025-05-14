@@ -72,7 +72,7 @@ In case `active_player` chooses both `.block()` and `.flee()`, they will default
 **When to `.attack()`**: If the character does not choose to `.block()`, `.flee()`, or `.taunt()`, they will automatically choose to `.attack()`.
 
 ## Additional features
-I had plenty of other ideas for game features, including, but not limited to: saveable ``Player`` profiles, more and varied types of ``Item``s, more complex ``Fighter`` attributes and behaviors (e.g. `.courage` or `.morale`, finisher moves, multi-`Item` inventories) ``Fighter.xp`` and a leveling system, more dynamic action descriptions, and perhaps even a “story mode." However, in order to limit scope creep and continue on my learning journey, I decided to set a hard limit (for now) on the game’s features.
+I had plenty of other ideas for game features, including, but not limited to: saveable ``Player`` profiles, more and varied types of ``Item``s, more complex ``Fighter`` attributes and behaviors (e.g. `.courage` or `.morale`, finisher moves, multi-`Item` inventories), ``Fighter.xp`` and a leveling system, more dynamic action descriptions, and perhaps even a “story mode." However, in order to limit scope creep and continue on my learning journey, I decided to set a hard limit (for now) on the game’s features.
 
 ## How to Play
 1. Download the latest version of Python
