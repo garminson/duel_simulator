@@ -16,27 +16,6 @@ class Item:
       description += "\n{item} is a LEGENDARY weapon. Only the worthy may wield it.".format(item = self.name)
     return description
 
-# PRE-MADE ITEMS:
-gunsword = Item("Gunsword", "Projectile and Slashing", 50, True)
-
-black_sword = Item("Black Sword", "Piercing and Slashing", 50, True)
-
-cloak_of_mist = Item("Cloak of Mist", "Magic", 30)
-
-bb_gun = Item("BB Gun", "Projectile", 10)
-
-dowel = Item("Dowel", "Bludgeoning", 7)
-
-b_made_hands = Item("B-Made Hands", "B-Made", 5)
-
-expo_marker = Item("Expo Marker", "Projectile", 5)
-
-fists = Item("Fists", "Bludgeoning", 15)
-
-raging_fists = Item("Raging Fists", "Bludgeoning", 40, True)
-
-fire_breath = Item("Fire Breath", "Fire", 70, True)
-
 # FIGHTER CLASS:
 class Fighter:
 
@@ -171,194 +150,7 @@ class Fighter:
   def taunt(self, opponent):
     if self.taunt_message: # Only works if the character actually has a taunt message
       print(f"\n{self.name} taunts {opponent.name}: '{self.taunt_message}'")
-
-# PRE-MADE FIGHTERS:
-# FAMILY MYTHOS:
-# Bucka
-bucka = Fighter("Bucka", 
-hp = 1000, 
-strength = 10, 
-speed = 5,
-item = gunsword, 
-armor = "Leather",
-taunt_message = "HEH-HEH-HEH! Looks like you're 'bout to learn your lesson the hard way, chummy!")
-
-# Bargoth
-bargoth = Fighter("Bargoth", 
-hp = 1000, 
-strength = 20, 
-speed = 10,
-item = black_sword, 
-armor = "Black Metal",
-taunt_message = "Now you learn the meaning of pain.")
-
-# LaDonna
-ladonna = Fighter("LaDonna", 
-hp = 500,
-strength = 7, 
-speed = 3,
-item = cloak_of_mist, 
-armor = "Fabric",
-taunt_message = "Nyeh heh hehhh! My minions will be having you for supper tonight!")
-
-# Dah
-dah = Fighter("Dah", 
-strength = 4,
-speed = 7,
-item = bb_gun,
-taunt_message = "Wulp... this is goin' better than I expected.")
-
-# Richad
-richad = Fighter("Richad",
-strength = 3, 
-speed = 7,
-item = dowel,
-taunt_message = "Hauhhh?")
-
-# Garminson
-garminson = Fighter("Garminson",
-                    strength = 3,
-                    speed = 15,
-                    item = b_made_hands,
-                    taunt_message = "I'm gonna spank ya...")
-
-uncle_barney = Fighter("Uncle Barney",
-                       hp = 150,
-                       strength = 5,
-                       speed = 12,
-                       item = expo_marker,
-                       taunt_message = "*farts loudly*")
-
-rocker = Fighter("Rocker",
-                 hp = 350,
-                 strength = 15,
-                 speed = 10,
-                 item = fists,
-                 taunt_message = "GET REKT!")
-
-# The Incredible
-incredible = Fighter("The Incredible", 
-hp = 1500,
-strength = 30, 
-speed = 1,
-item = raging_fists,
-taunt_message = "RAAAAARRR!!!")
-
-# ANIMALS
-# Gorilla
-gorilla = Fighter("Silverback Gorilla",
-                  hp = 1500,
-                  strength = 40,
-                  speed = 3,
-                  item = raging_fists,
-                  taunt_message = "Hoo-hoo-HOOO-HOO!")
-
-# Dragon
-dragon = Fighter("Fire-Breathing Dragon",
-                 hp = 2000,
-                 strength = 100,
-                 speed = 5,
-                 item = fire_breath,
-                 taunt_message = "RAAAAOOOAARRRR!!!")
-
-# FIGHTER SELECTION FUNCTION: 
-def select_fighter():
-  # Fighter options:
-  def fighter_assign():
-    fighter_choice = int(input(""" \nCheck a Fighter's Stats by entering the Fighter's number:
-
-1. BUCKA
-  Legendary gunslinger, King of Sto.
-                               
-2. BARGOTH
-  Wielder of the Black Sword.
-                               
-3. LADONNA
-  Sorceress extraordinaire.
-                               
-4. DAH
-  Wulp...
-                               
-5. RICHAD
-  Hauh?
-                               
-6. GARMINSON
-  B-made.
-                               
-7. UNCLE BARNEY
-  Everybody's least favorite uncle.
-                               
-8. ROCKER
-  "Get rocked!"
-                               
-9. THE INCREDIBLE
-  'RAAUHHHR!!!'
-                               
-10. SILVERBACK GORILLA
-  Go-RILL-a
-                               
-11. FIRE-BREATHING DRAGON
-  Why do I hear boss music?
-                               
-"""))
-
-    while fighter_choice not in range(1, 12):
-      fighter_choice = int(input("""
-                            You pressed the wrong friggin button, ya dubba. 
-                            Enter a number from 1 to 6 to choose your Fighter."""))
-    if fighter_choice == 1:
-      player = bucka
-    elif fighter_choice == 2:
-      player = bargoth
-    elif fighter_choice == 3:
-      player = ladonna
-    elif fighter_choice == 4:
-      player = dah
-    elif fighter_choice == 5:
-      player = richad
-    elif fighter_choice == 6:
-      player = garminson
-    elif fighter_choice == 7:
-      player = uncle_barney
-    elif fighter_choice == 8:
-      player = rocker
-    elif fighter_choice == 9:
-      player = incredible
-    elif fighter_choice == 10:
-      player = gorilla
-    elif fighter_choice == 11:
-      player = dragon
-    return player
-  
-  # Assign selected Fighter to player:
-  player = fighter_assign()
-
-  # Confirm player's Fighter selection:
-  def confirm_selection(player):
-
-    while True:
-      print(f"""\nYou have chosen {player.name.upper()}!
-
-        {player}
-
-    """)
-      confirm_selection = input(f"\nAre you sure you want to continue with {player.name}? Y / N ").upper()
-      if confirm_selection == 'Y':
-        input(f"\nFighter selection confirmed: {player.name}. Press Enter to continue. ")
-        return player
-      elif confirm_selection == 'N':
-        print("\nOK, choose a different Fighter.\n")
-        player = fighter_assign()
-      else:
-        confirm_selection = input(f"\nInvalid input. \nPlease enter Y to confirm {player.name} as your chosen Fighter, or enter N to choose a different Fighter. Y / N ")
-  
-  confirm_selection(player)
-
-  # Return player object to function call:
-  return player
- 
-    # Add option to switch to Create-a-Fighter from here, and add option to switch from Create-a-Fighter to Select-a-Fighter
-    
+   
 # CREATE-A-FIGHTER FUNCTION:
 def create_fighter():
   dubba_counter = 0
@@ -487,6 +279,216 @@ def create_fighter():
 # start_game() function enables replayability
 # when the duel ends:
 def start_game():
+
+# DEFINE PREMADE OBJECTS WITHIN THE START GAME FUNCTION
+# so that they reset after every duel!
+  # PRE-MADE ITEMS:
+  gunsword = Item("Gunsword", "Projectile and Slashing", 50, True)
+
+  black_sword = Item("Black Sword", "Piercing and Slashing", 50, True)
+
+  cloak_of_mist = Item("Cloak of Mist", "Magic", 30)
+
+  bb_gun = Item("BB Gun", "Projectile", 10)
+
+  dowel = Item("Dowel", "Bludgeoning", 7)
+
+  b_made_hands = Item("B-Made Hands", "B-Made", 5)
+
+  expo_marker = Item("Expo Marker", "Projectile", 5)
+
+  fists = Item("Fists", "Bludgeoning", 15)
+
+  raging_fists = Item("Raging Fists", "Bludgeoning", 40, True)
+
+  fire_breath = Item("Fire Breath", "Fire", 70, True)
+
+    # PRE-MADE FIGHTERS:
+  # FAMILY MYTHOS:
+  # Bucka
+  bucka = Fighter("Bucka", 
+  hp = 1000, 
+  strength = 10, 
+  speed = 5,
+  item = gunsword, 
+  armor = "Leather",
+  taunt_message = "HEH-HEH-HEH! Looks like you're 'bout to learn your lesson the hard way, chummy!")
+
+  # Bargoth
+  bargoth = Fighter("Bargoth", 
+  hp = 1000, 
+  strength = 20, 
+  speed = 10,
+  item = black_sword, 
+  armor = "Black Metal",
+  taunt_message = "Now you learn the meaning of pain.")
+
+  # LaDonna
+  ladonna = Fighter("LaDonna", 
+  hp = 500,
+  strength = 7, 
+  speed = 3,
+  item = cloak_of_mist, 
+  armor = "Fabric",
+  taunt_message = "Nyeh heh hehhh! My minions will be having you for supper tonight!")
+
+  # Dah
+  dah = Fighter("Dah", 
+  strength = 4,
+  speed = 7,
+  item = bb_gun,
+  taunt_message = "Wulp... this is goin' better than I expected.")
+
+  # Richad
+  richad = Fighter("Richad",
+  strength = 3, 
+  speed = 7,
+  item = dowel,
+  taunt_message = "Hauhhh?")
+
+  # Garminson
+  garminson = Fighter("Garminson",
+                      strength = 3,
+                      speed = 15,
+                      item = b_made_hands,
+                      taunt_message = "Boo-boo BAH-BAH!")
+
+  uncle_barney = Fighter("Uncle Barney",
+                        hp = 150,
+                        strength = 5,
+                        speed = 12,
+                        item = expo_marker,
+                        taunt_message = "*farts*")
+
+  rocker = Fighter("Rocker",
+                  hp = 300,
+                  strength = 15,
+                  speed = 10,
+                  item = fists,
+                  taunt_message = "GET REKT!")
+
+  # The Incredible
+  incredible = Fighter("The Incredible", 
+  hp = 1500,
+  strength = 30, 
+  speed = 1,
+  item = raging_fists,
+  taunt_message = "RAAAAARRR!!!")
+
+  # ANIMALS
+  # Gorilla
+  gorilla = Fighter("Silverback Gorilla",
+                    hp = 1500,
+                    strength = 40,
+                    speed = 3,
+                    item = raging_fists,
+                    taunt_message = "Hoo-hoo-HOOO-HOO!")
+
+  # Dragon
+  dragon = Fighter("Fire-Breathing Dragon",
+                  hp = 2000,
+                  strength = 100,
+                  speed = 5,
+                  item = fire_breath,
+                  taunt_message = "RAAAAOOOAARRRR!!!")
+  
+  # FIGHTER SELECTION FUNCTION:
+  def select_fighter():
+    # Fighter options:
+    def fighter_assign():
+      fighter_choice = int(input(""" \nCheck a Fighter's Stats by entering the Fighter's number:
+
+  1. BUCKA
+    Legendary gunslinger, King of Sto.
+                                
+  2. BARGOTH
+    Wielder of the Black Sword.
+                                
+  3. LADONNA
+    Sorceress extraordinaire.
+                                
+  4. DAH
+    Wulp...
+                                
+  5. RICHAD
+    Hauh?
+                                
+  6. GARMINSON
+    B-made.
+                                
+  7. UNCLE BARNEY
+    Everybody's least favorite uncle.
+                                
+  8. ROCKER
+    "Get rocked!"
+                                
+  9. THE INCREDIBLE
+    'RAAUHHHR!!!'
+                                
+  10. SILVERBACK GORILLA
+    Go-RILL-a
+                                
+  11. FIRE-BREATHING DRAGON
+    Why do I hear boss music?
+                                
+  """))
+
+      while fighter_choice not in range(1, 12):
+        fighter_choice = int(input("""
+                              You pressed the wrong friggin button, ya dubba. 
+                              Enter a number from 1 to 6 to choose your Fighter."""))
+      if fighter_choice == 1:
+        player = bucka
+      elif fighter_choice == 2:
+        player = bargoth
+      elif fighter_choice == 3:
+        player = ladonna
+      elif fighter_choice == 4:
+        player = dah
+      elif fighter_choice == 5:
+        player = richad
+      elif fighter_choice == 6:
+        player = garminson
+      elif fighter_choice == 7:
+        player = uncle_barney
+      elif fighter_choice == 8:
+        player = rocker
+      elif fighter_choice == 9:
+        player = incredible
+      elif fighter_choice == 10:
+        player = gorilla
+      elif fighter_choice == 11:
+        player = dragon
+      return player
+    
+    # Assign selected Fighter to player:
+    player = fighter_assign()
+
+    # Confirm player's Fighter selection:
+    def confirm_selection(player):
+
+      while True:
+        print(f"""\nYou have chosen {player.name.upper()}!
+
+          {player}
+
+      """)
+        confirm_selection = input(f"\nAre you sure you want to continue with {player.name}? Y / N ").upper()
+        if confirm_selection == 'Y':
+          input(f"\nFighter selection confirmed: {player.name}. Press Enter to continue. ")
+          return player
+        elif confirm_selection == 'N':
+          print("\nOK, choose a different Fighter.\n")
+          player = fighter_assign()
+        else:
+          confirm_selection = input(f"\nInvalid input. \nPlease enter Y to confirm {player.name} as your chosen Fighter, or enter N to choose a different Fighter. Y / N ")
+    
+    confirm_selection(player)
+
+    # Return player object to function call:
+    return player
+  
+      # Add option to switch to Create-a-Fighter from here, and add option to switch from Create-a-Fighter to Select-a-Fighter
 
   input("Welcome to DUEL SIMULATOR v1.0, by BuckaSoft LTD (2025, all rights reserved). \nPress Enter to begin. ")
 
