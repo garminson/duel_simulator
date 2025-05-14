@@ -72,11 +72,11 @@ In case `active_player` chooses both `.block()` and `.flee()`, they will default
 **When to `.attack()`**: If the character does not choose to `.block()`, `.flee()`, or `.taunt()`, they will automatically choose to `.attack()`.
 
 ## Additional features
-I had plenty of other ideas for game features, including, but not limited to: saveable ``Player`` profiles, more and varied types of ``Item``s, more complex ``Fighter`` attributes and behaviors (e.g. `.courage` or `.morale`, finisher moves, multi-`Item` inventories) ``Fighter.xp`` and a leveling system, more dynamic action descriptions, and perhaps even a “story mode." However, in order to limit scope creep and continue on my learning journey, I decided to set a hard limit (for now) on the game’s features.
+I had plenty of other ideas for game features, including, but not limited to: saveable ``Player`` profiles, more and varied types of ``Item``s, more complex ``Fighter`` attributes and behaviors (e.g. `.courage` or `.morale`, finisher moves, multi-`Item` inventories), ``Fighter.xp`` and a leveling system, more dynamic action descriptions, and perhaps even a “story mode." However, in order to limit scope creep and continue on my learning journey, I decided to set a hard limit (for now) on the game’s features.
 
 ## How to Play
 1. Download the latest version of Python
-2. Download the game
+2. Download [duel_sim_main.py]((https://github.com/garminson/duel_simulator/blob/main/duel_sim_main.py)) or clone this repository
 3. Open the Terminal app on your computer
 4. Run the game by entering the following command in Terminal: `python3 duel_sim_main.py`
 5. Follow the on-screen directions!
