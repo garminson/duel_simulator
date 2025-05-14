@@ -64,10 +64,10 @@ class Fighter:
     item_names = self.item.name if self.item else "nothing"
     armor_type = self.armor if self.armor else "no"
     description = """\n{name}'s Stats:
-    {name} has {hp} Health Points. 
+    {name} has {hp} Hit Points. 
     {name}'s Strength score is {strength}.
     {name}'s Speed score is {speed}. 
-    {name}'s inventory contains: {item_names}. 
+    {name} is wielding {item_names}. 
     {name} is wearing {armor_type} armor.""".format(
       name = self.name, 
       hp = self.hp, 
@@ -267,24 +267,34 @@ def select_fighter():
 
 1. BUCKA
   Legendary gunslinger, King of Sto.
+                               
 2. BARGOTH
   Wielder of the Black Sword.
+                               
 3. LADONNA
   Sorceress extraordinaire.
+                               
 4. DAH
   Wulp...
+                               
 5. RICHAD
   Hauh?
+                               
 6. GARMINSON
   B-made.
+                               
 7. UNCLE BARNEY
   Everybody's least favorite uncle.
+                               
 8. ROCKER
-  "Get ROCKED."
+  "Get rocked!"
+                               
 9. THE INCREDIBLE
   'RAAUHHHR!!!'
+                               
 10. SILVERBACK GORILLA
   Go-RILL-a
+                               
 11. FIRE-BREATHING DRAGON
   Why do I hear boss music?
                                
