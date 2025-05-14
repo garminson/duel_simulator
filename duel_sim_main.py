@@ -545,7 +545,6 @@ def duel(player1, player2):
 
   # Nested function to determine active_player's chosen action for the current turn:
   def choose_action(active_player, passive_player):
-    choice = None
 
     # FLEE option:
     # 2 conditions may trigger .flee() chance: 
