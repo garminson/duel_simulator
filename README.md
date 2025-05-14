@@ -28,7 +28,7 @@ The minimum damage that a character can inflict is either their ``.strength`` or
 
 If ``opponent.is_blocking`` at the time of the ``.attack()``, then the damage is reduced by the opponent's current ``.block_points``.
 
-The ``opponent``'s ``.armor`` also affects how much damage they take from the attack. ``"Leather"`` armor resists ``"Slashing"`` damage, ``"Metal"`` resists `"Piercing"` and `"Projectile"` damage, "Fabric" resists `"Bludgeoning"`, and nothing resists `"Magic"`.
+The ``opponent``'s ``.armor`` also affects how much damage they take from the attack. ``"Leather"`` armor resists ``"Slashing"`` damage, ``"Metal"`` resists `"Piercing"` and `"Projectile"` damage, `"Fabric"` resists `"Bludgeoning"`, and nothing resists `"Magic"`.
 
 #### `Fighter.block()`
 If a character chooses to `.block()`, then their `.is_blocking` attribute is set to `True`, their `.block_points` are calculated using a `random` integer in the range of half their weapon's `.power` score, multiplied by their `.strength` score. Their incoming damage is then reduced by their `.block_points`. Their `is_blocking` attribute is set back to `False` at the end of their opponent's `.attack()`, ensuring that they do not continue blocking into the next turn.
