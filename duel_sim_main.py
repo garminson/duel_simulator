@@ -200,7 +200,6 @@ def create_fighter():
         custom_speed = input(f"\nBuddy, I am not letting you set your Fighter's speed to friggin' {custom_speed}. Keep it undah 20, wouldya? Enter a lower number. ")
       if int(custom_speed) <= 20:
         custom_speed = int(custom_speed)
-        print(f"\nThat's more like it, chummy.")
         break 
     except ValueError:
         custom_speed = input("\nWhat kinda dubwad are you? That ain't a number. Enter a NUMBER. ")
