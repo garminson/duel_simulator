@@ -298,13 +298,19 @@ def start_game():
 
   expo_marker = Item("Expo Marker", "Projectile", 2)
 
-  atomic_hip = Item("Atomic Hips", "Thunder", 30, True)
+  atomic_hip = Item("Atomic Hips", "Nuclear", 30, True)
 
   fists = Item("Fists", "Bludgeoning", 15)
 
   raging_fists = Item("Raging Fists", "Bludgeoning", 40, True)
 
   fire_breath = Item("Fire Breath", "Fire", 70, True)
+
+  six_shooter = Item("Six Shooter", "Projectile", 25)
+
+  leather_sack = Item("Leather Sack", "Slapping", 25, True)
+
+  quantum_cannon = Item("Quantum Cannon", "Laser", 60, True)
 
     # PRE-MADE FIGHTERS:
   # FAMILY MYTHOS:
@@ -356,6 +362,7 @@ def start_game():
                       item = b_made_hands,
                       taunt_message = "Boo-boo BAH-BAH!")
 
+# Uncle Barney
   uncle_barney = Fighter("Uncle Barney",
                         hp = 150,
                         strength = 5,
@@ -363,6 +370,7 @@ def start_game():
                         item = expo_marker,
                         taunt_message = "*farts*")
   
+  # Rasheed
   rasheed = Fighter("Rasheed",
                     hp = 800,
                     strength = 10,
@@ -371,6 +379,7 @@ def start_game():
                     armor = "Fabric",
                     taunt_message = "Do you even know who I am? *snickers*")
 
+# Rocker
   rocker = Fighter("Rocker",
                   hp = 300,
                   strength = 15,
@@ -389,7 +398,7 @@ def start_game():
   # ANIMALS
   # Gorilla
   gorilla = Fighter("Silverback Gorilla",
-                    hp = 1500,
+                    hp = 1200,
                     strength = 40,
                     speed = 3,
                     item = raging_fists,
@@ -399,9 +408,33 @@ def start_game():
   dragon = Fighter("Fire-Breathing Dragon",
                   hp = 2000,
                   strength = 100,
-                  speed = 5,
+                  speed = 2,
                   item = fire_breath,
                   taunt_message = "RAAAAOOOAARRRR!!!")
+  
+# Chad
+  chad = Fighter("Chad",
+                 hp = 400,
+                 strength = 10,
+                 speed = 7,
+                 item = six_shooter,
+                 taunt_message = "Hyeah, thur's a new shurrif in town.")
+  
+  leatherman = Fighter("The Leather Man",
+                       hp = 1000,
+                       strength = 12,
+                       speed = 5,
+                       item = leather_sack,
+                       armor = "Leather",
+                       taunt_message = "I'm the Leather Man!")
+  
+  smelvin = Fighter("SMELVIN-5000",
+                    hp = 1500,
+                    strength = 20,
+                    speed = 20,
+                    item = quantum_cannon,
+                    armor = "Metal",
+                    taunt_message = "Mhm.")
   
   # FIGHTER SELECTION FUNCTION:
   def select_fighter():
@@ -431,7 +464,7 @@ def start_game():
     Everybody's least favorite uncle.
   
   8. RASHEED
-    Scientist by day, assassin by night, robot all the time.
+    Physicist by day, assassin by night.
                                 
   9. ROCKER
     "Get rocked!"
@@ -444,8 +477,17 @@ def start_game():
                                 
   12. FIRE-BREATHING DRAGON
     Why do I hear boss music?
-                                
+  
+  13. CHAD
+    There's a new sherrif in town.
+  
+  14. THE LEATHER MAN
+    A New England legend.
+
+  15. SMELVIN-5000
+    Man or machine?                                                         
   """)
+      
       while True:
         try: 
           fighter_choice = int(fighter_choice)
@@ -484,10 +526,14 @@ def start_game():
             break
           elif fighter_choice == 12:
             player = dragon
+          elif fighter_choice == 13:
+            player = chad
+          elif fighter_choice == 14:
+            player = leatherman
           else:
             fighter_choice = input("""
                                   You pressed the wrong friggin button, ya dubba. 
-                                  Enter a number from 1 to 11 to choose your Fighter.""")
+                                  Enter a number from 1 to 14 to choose your Fighter.""")
         except ValueError:
           fighter_choice = input("\nNope... Enter a NUMBER from 1 to 11 to select a Fighter. ")
       return player
