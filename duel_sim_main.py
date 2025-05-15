@@ -184,7 +184,7 @@ def create_fighter():
       if custom_strength > 100:
         print(f"\nYou friggin' numbskull, I ain't lettin' you set {custom_name}'s Strength that high. Try a lower number. ")
         custom_strength = input("\nTry entering a lower number, bub. ")
-      if int(custom_strength) < 100:
+      if int(custom_strength) <= 100:
         custom_strength = int(custom_strength)
         print(f"\n{custom_name}'s Strength is set to {custom_strength}.")
         break
