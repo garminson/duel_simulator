@@ -364,7 +364,7 @@ def start_game():
                         taunt_message = "*farts*")
   
   rasheed = Fighter("Rasheed",
-                    hp = 300,
+                    hp = 800,
                     strength = 10,
                     speed = 20,
                     item = atomic_hip,
