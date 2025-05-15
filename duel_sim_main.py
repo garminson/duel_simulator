@@ -294,9 +294,9 @@ def start_game():
 
   dowel = Item("Dowel", "Bludgeoning", 7)
 
-  b_made_hands = Item("B-Made Hands", "B-Made", 5)
+  b_made_hands = Item("B-Made Hands", "B-Made", 4)
 
-  expo_marker = Item("Expo Marker", "Projectile", 5)
+  expo_marker = Item("Expo Marker", "Projectile", 2)
 
   fists = Item("Fists", "Bludgeoning", 15)
 
