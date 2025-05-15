@@ -396,7 +396,7 @@ def start_game():
   def select_fighter():
     # Fighter options:
     def fighter_assign():
-      fighter_choice = int(input(""" \nCheck a Fighter's Stats by entering the Fighter's number:
+      fighter_choice = input(""" \nCheck a Fighter's Stats by entering the Fighter's number:
 
   1. BUCKA
     Legendary gunslinger, King of Sto.
@@ -431,35 +431,51 @@ def start_game():
   11. FIRE-BREATHING DRAGON
     Why do I hear boss music?
                                 
-  """))
-
-      while fighter_choice not in range(1, 12):
-        fighter_choice = int(input("""
-                              You pressed the wrong friggin button, ya dubba. 
-                              Enter a number from 1 to 11 to choose your Fighter."""))
-      if fighter_choice == 1:
-        player = bucka
-      elif fighter_choice == 2:
-        player = bargoth
-      elif fighter_choice == 3:
-        player = ladonna
-      elif fighter_choice == 4:
-        player = dah
-      elif fighter_choice == 5:
-        player = richad
-      elif fighter_choice == 6:
-        player = garminson
-      elif fighter_choice == 7:
-        player = uncle_barney
-      elif fighter_choice == 8:
-        player = rocker
-      elif fighter_choice == 9:
-        player = incredible
-      elif fighter_choice == 10:
-        player = gorilla
-      elif fighter_choice == 11:
-        player = dragon
+  """)
+      while True:
+        try: 
+          fighter_choice = int(fighter_choice)
+          if fighter_choice == 1:
+            player = bucka
+            break
+          elif fighter_choice == 2:
+            player = bargoth
+            break
+          elif fighter_choice == 3:
+            player = ladonna
+            break
+          elif fighter_choice == 4:
+            player = dah
+            break
+          elif fighter_choice == 5:
+            player = richad
+            break
+          elif fighter_choice == 6:
+            player = garminson
+            break
+          elif fighter_choice == 7:
+            player = uncle_barney
+            break
+          elif fighter_choice == 8:
+            player = rocker
+            break
+          elif fighter_choice == 9:
+            player = incredible
+            break
+          elif fighter_choice == 10:
+            player = gorilla
+            break
+          elif fighter_choice == 11:
+            player = dragon
+            break
+          else:
+            fighter_choice = input("""
+                                  You pressed the wrong friggin button, ya dubba. 
+                                  Enter a number from 1 to 11 to choose your Fighter.""")
+        except ValueError:
+          fighter_choice = input("\nNope... Enter a NUMBER from 1 to 11 to select a Fighter. ")
       return player
+
     
     # Assign selected Fighter to player:
     player = fighter_assign()
