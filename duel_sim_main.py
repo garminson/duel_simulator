@@ -526,12 +526,16 @@ def start_game():
             break
           elif fighter_choice == 12:
             player = dragon
+            break
           elif fighter_choice == 13:
             player = chad
+            break
           elif fighter_choice == 14:
             player = leatherman
+            break
           elif fighter_choice == 15:
             player = smelvin
+            break
           else:
             fighter_choice = input("""
                                   You pressed the wrong friggin button, ya dubba. 
