@@ -47,11 +47,23 @@ This welcomes the user to _Duel Simulator_, then prompts the user to either ente
 #### `select_fighter()`
 Presents the user with a list of pre-made Fighters to choose from. Upon selecting a Fighter, the user is show the Fighter's stats, and asked if they wish to continue with this Fighter. If not, they may choose a different Fighter.
 
+<img width="715" alt="Screenshot 2025-05-14 at 9 40 58 PM" src="https://github.com/user-attachments/assets/0a25f998-360a-4c26-b8e1-571375858571" />
+
+
 #### `create_fighter()`
 Guides the user through the creation of their own custom Fighter, with humorous error handling messages displayed in case the user enters an invalid value at any stage of the Fighter creation process.
 
+<img width="1105" alt="Screenshot 2025-05-14 at 9 55 06 PM" src="https://github.com/user-attachments/assets/cacd329b-b55e-4a4c-8a81-da2f5c0c8fe5" />
+
+
+<img width="901" alt="Screenshot 2025-05-14 at 9 53 17 PM" src="https://github.com/user-attachments/assets/98efde6f-f95f-4ba2-8dc4-494b7d0b9065" />
+
+
 #### `duel()`
 This function is called after both players have either chosen or created Fighters. The `duel()` function takes two arguments: `player1` and `player2`, which are first defined in the `select_fighter()` or `create_fighter()` function call within the `start_game()` function.
+
+![image](https://github.com/user-attachments/assets/26c51f46-c23e-4d26-9aea-195a5b3755b4)
+
 
 The duel begins with an initiative roll to determine which Fighter gets the first move. Initiative is calculated DnD-style using random integers between 1 and 20 multiplied by each Fighter's speed.
 
@@ -63,11 +75,20 @@ A basic overview of the `Fighter` decision-making logic is as follows:
 
 **When to `.block()`**: 2 conditions may trigger a chance of trying to `.block()`: If `active_player`'s `.hp` is less than 75% of the opponent's (`passive_player`'s) `.hp`, _or_ if their opponent's `Item` has double the `.power` of their own. For the HP method, the `active_player`'s chance of trying to block is determined by a random number in the range of the HP difference between the two `Fighter`s. If this random number is greater than half of the total difference in HP, then the `active_player` will choose to `.block()`. For the `Item.power` method, `active_player`'s chance of trying to block is determined by a random number in the range of the `item.power` difference between the two `Fighter`s. If this random number is greater than half of the `item.power` difference, then `active_player` will choose to `.block()`.
 
+![image](https://github.com/user-attachments/assets/87816b15-2590-4794-825f-3b9fcdc3fdf4)
+
+
 **When to `.flee()`**: 2 conditions may trigger a chance of `active_player` trying to `.flee()`: If their HP is less than 30% of their opponent's HP, or if they are a non-legendary player pitted against a legendary player (one wielding a legendary weapon). In both of these cases, the active_player's chance of trying to .flee(), i.e. their `fear`, is calculated in the same way: A random number in the range of the `.strength` difference between the two `Fighter`s. If the `active_player`'s `fear` exceeds half of the strength difference, then the `active_player` will try to `.flee()` the duel. Whether their `.flee()` attempt is successful or not depends on several factors described above in the section on `Fighter` methods.
+
+![image](https://github.com/user-attachments/assets/5d402e53-5177-41ff-a52e-eb8d750eb40d)
+
 
 In case `active_player` chooses both `.block()` and `.flee()`, they will default to `.block()`.
 
 **When to `.taunt()`**: 3 conditions may trigger a chance of `active_player` trying to `.taunt()`: 1) their `.hp` is double their opponent's `.hp`, 2) their `strength` is double their opponent's `strength`, or 3) they are a legendary `Fighter` pitted against a non-legendary `Fighter`. If any of these conditions are met, `active_player`'s chance of trying to `.taunt()` is determined by a random number in the range of the difference in `strength` between the two `Fighter`s (in the unlikely event that the 2 `Fighter`s are of equal `strength`, the taunt chance is a random number between 1 and 10). The `active_player` will choose to `.taunt()` if this random `taunt_chance` exceeds 75% of the difference in `strength` (or, if they are of equal `strength`, if the `taunt_chance` is greater than `7.5`.
+
+![image](https://github.com/user-attachments/assets/49f1ae6a-0b52-4d8d-99cd-2af3f0086945)
+
 
 **When to `.attack()`**: If the character does not choose to `.block()`, `.flee()`, or `.taunt()`, they will automatically choose to `.attack()`.
 
