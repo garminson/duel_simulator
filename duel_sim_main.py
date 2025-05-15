@@ -530,6 +530,8 @@ def start_game():
             player = chad
           elif fighter_choice == 14:
             player = leatherman
+          elif fighter_choice == 15:
+            player = smelvin
           else:
             fighter_choice = input("""
                                   You pressed the wrong friggin button, ya dubba. 
