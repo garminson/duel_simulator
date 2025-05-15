@@ -80,6 +80,10 @@ class Fighter:
     
     # Check if opponent .is_blocking at the time of the attack:
     if opponent.is_blocking:
+      # Ensure that opponent does not inadvertently GAIN HP
+      # if their block points are higher than the attack's damage!
+      if opponent.block_points > opponent_damage:
+        opponent.block_points = opponent_damage
       print(f"\n{opponent.name} uses {opponent.item.name} to block {opponent.block_points} damage points from {self.name}'s attack!")
 
      # Accounting for opponent's .armor attribute -- Leather resists slashing, Metal resists piercing and projectile, Fabric resists bludgeoning, nothing resists Magic:
