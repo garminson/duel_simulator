@@ -298,6 +298,8 @@ def start_game():
 
   expo_marker = Item("Expo Marker", "Projectile", 2)
 
+  atomic_hip = Item("Atomic Hip Check", "Thunder", 30)
+
   fists = Item("Fists", "Bludgeoning", 15)
 
   raging_fists = Item("Raging Fists", "Bludgeoning", 40, True)
@@ -309,7 +311,7 @@ def start_game():
   # Bucka
   bucka = Fighter("Bucka", 
   hp = 1000, 
-  strength = 10, 
+  strength = 15, 
   speed = 5,
   item = gunsword, 
   armor = "Leather",
@@ -319,7 +321,7 @@ def start_game():
   bargoth = Fighter("Bargoth", 
   hp = 1000, 
   strength = 20, 
-  speed = 10,
+  speed = 15,
   item = black_sword, 
   armor = "Black Metal",
   taunt_message = "Now you learn the meaning of pain.")
@@ -360,6 +362,13 @@ def start_game():
                         speed = 12,
                         item = expo_marker,
                         taunt_message = "*farts*")
+  
+  rasheed = Fighter("Rasheed",
+                    hp = 300,
+                    strength = 10,
+                    speed = 20,
+                    item = atomic_hip,
+                    taunt_message = "Do you even know who I am? *snickers*")
 
   rocker = Fighter("Rocker",
                   hp = 300,
@@ -419,17 +428,20 @@ def start_game():
                                 
   7. UNCLE BARNEY
     Everybody's least favorite uncle.
+  
+  8. RASHEED
+    Scientist by day, assassin by night, robot all the time.
                                 
-  8. ROCKER
+  9. ROCKER
     "Get rocked!"
                                 
-  9. THE INCREDIBLE
+  10. THE INCREDIBLE
     'RAAUHHHR!!!'
                                 
-  10. SILVERBACK GORILLA
+  11. SILVERBACK GORILLA
     Go-RILL-a
                                 
-  11. FIRE-BREATHING DRAGON
+  12. FIRE-BREATHING DRAGON
     Why do I hear boss music?
                                 
   """)
@@ -458,17 +470,19 @@ def start_game():
             player = uncle_barney
             break
           elif fighter_choice == 8:
-            player = rocker
+            player = rasheed
             break
           elif fighter_choice == 9:
-            player = incredible
+            player = rocker
             break
           elif fighter_choice == 10:
-            player = gorilla
+            player = incredible
             break
           elif fighter_choice == 11:
-            player = dragon
+            player = gorilla
             break
+          elif fighter_choice == 12:
+            player = dragon
           else:
             fighter_choice = input("""
                                   You pressed the wrong friggin button, ya dubba. 
