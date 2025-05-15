@@ -368,6 +368,7 @@ def start_game():
                     strength = 10,
                     speed = 20,
                     item = atomic_hip,
+                    armor = "Fabric",
                     taunt_message = "Do you even know who I am? *snickers*")
 
   rocker = Fighter("Rocker",
