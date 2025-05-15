@@ -298,7 +298,7 @@ def start_game():
 
   dowel = Item("Dowel", "Bludgeoning", 7)
 
-  b_made_hands = Item("B-Made Hands", "B-Made", 4)
+  b_made_hands = Item("Beemaid Hands", "B-Made", 4)
 
   expo_marker = Item("Expo Marker", "Projectile", 2)
 
@@ -462,7 +462,7 @@ def start_game():
     Hauh?
                                 
   6. GARMINSON
-    B-made.
+    Gar... minson?
                                 
   7. UNCLE BARNEY
     Everybody's least favorite uncle.
