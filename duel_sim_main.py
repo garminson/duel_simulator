@@ -298,7 +298,7 @@ def start_game():
 
   expo_marker = Item("Expo Marker", "Projectile", 2)
 
-  atomic_hip = Item("Atomic Hip Check", "Thunder", 30)
+  atomic_hip = Item("Atomic Hips", "Thunder", 30)
 
   fists = Item("Fists", "Bludgeoning", 15)
 
